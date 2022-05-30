@@ -1,0 +1,18 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Water Level</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < waterLevel.length; i++){ %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= waterLevel[i].waterlevel %></td>
+        <td><%= waterLevel[i].updatedAt %></td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>

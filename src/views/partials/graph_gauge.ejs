@@ -1,0 +1,54 @@
+<script src="path/to/chartjs/dist/chart.js"></script>
+<script>
+  var ctx = document.getElementById("chartJSContainer1");
+  var myChart = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Light Intensity"],
+      datasets: [
+        {
+          label: ["# of Votes"],
+          data: [45, 55],
+          backgroundColor: ["#538BF9"],
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      circumference: Math.PI + 1,
+      rotation: -Math.PI - 0.5,
+      cutoutPercentage: 64,
+
+      onClick(...args) {
+        // console.log(args);
+      },
+    },
+  });
+</script>
+
+<script>
+  var ctx = document.getElementById("chartJSContainer2");
+  var myChart = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Light Intensity"],
+      datasets: [
+        {
+          label: ["# of Votes"],
+          data: [45, 55],
+          backgroundColor: ["#538BF9"],
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      circumference: Math.PI + 1,
+      rotation: -Math.PI - 0.5,
+      cutoutPercentage: 64,
+
+      onClick(...args) {
+        // console.log(args);
+      },
+    },
+  });
+</script>

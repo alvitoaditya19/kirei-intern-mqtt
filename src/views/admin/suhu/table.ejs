@@ -1,0 +1,20 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Suhu Celcius</th>
+      <th>Humidity</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < suhu.length; i++){ %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= suhu[i].celcius %></td>
+        <td><%= suhu[i].humidity %></td>
+        <td><%= suhu[i].updatedAt %></td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>

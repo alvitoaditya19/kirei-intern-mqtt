@@ -1,0 +1,213 @@
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/chart.js"
+></script>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+  crossorigin="anonymous"
+></script>
+<script>
+  function filterData() {
+    var xmlhttp = new XMLHttpRequest();
+    var url = "https://kirei-intern-mqtt.herokuapp.com/api/v1/suhu/get";
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+
+        // BELAKANG TO DEPAN .reverse()
+        var celcius = data.data.slice(0, 5).map(function (elem) {
+          return elem.celcius;
+        });
+
+        var fahreinhet = data.data.slice(0, 5).map(function (elem) {
+          return elem.humidity;
+        });
+
+        var timeCelcius = data.data.slice(0, 5).map(function (elem) {
+          let newDate = new Date(elem.updatedAt);
+          // return `${newDate.getFullYear()}-${newDate.getMonth()}-${newDate.getDay()}`;
+          return `${newDate.getFullYear()}-${(newDate.getMonth() + 1).toString().padStart(2, "0")}-${newDate.getDate().toString().padStart(2, "0")}`;
+        });
+
+        const dates = timeCelcius;
+        const datapoints = celcius;
+        const dataGraph = {
+          labels: dates,
+          datasets: [
+            {
+              label: "Celcius",
+              data: datapoints,
+              backgroundColor: [
+                "rgba(255, 26, 104, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+                "rgba(0, 0, 0, 0.2)",
+              ],
+              borderColor: [
+                "rgba(255, 26, 104, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+                "rgba(0, 0, 0, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        };
+
+        // config
+        const config = {
+          type: "bar",
+          data: dataGraph,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        };
+        // console.log(config.data.labels)
+
+        // render init block
+        const myChart = new Chart(document.getElementById("myChart"), config);
+        // console.log(myChart.config.data.labels)
+        const dates2 = [...dates];
+
+        const startdate = document.getElementById("startdate");
+        const enddate = document.getElementById("enddate");
+
+        // get the index number in array
+        const indexstartdate = dates2.indexOf(startdate.value);
+        const indexenddate = dates2.indexOf(enddate.value);
+
+
+        // slice the array (pie) only showing the selected section / slice
+        const filterDate = dates2.slice(indexstartdate, indexenddate + 1); //1 is index array
+        console.log(myChart.config.data.datasets[0].data)
+        myChart.config.data.labels = filterDate;
+
+        // data poinst
+        const datapoints2 = [...datapoints];
+        const filterDataPoints = datapoints2.slice(
+          indexstartdate,
+          indexenddate + 1
+        ); //1 is index array
+        myChart.config.data.datasets[0].data = filterDataPoints;
+        myChart.update();
+      }
+    };
+  }
+</script>
+
+<!-- <script>
+  var xmlhttp = new XMLHttpRequest();
+  var url = "https://kirei-intern-mqtt.herokuapp.com/api/v1/suhu/get";
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var data = JSON.parse(this.responseText);
+
+      var celcius = data.data.map(function (elem) {
+          return elem.celcius;
+      });
+      console.log(celcius)
+
+
+      var humidity = data.data.map(function (elem) {
+        return elem.humidity;
+      });
+
+      var timeCelcius = data.data.map(function (elem) {
+        let newDate = new Date(elem.updatedAt);
+          // return `${newDate.getFullYear()}-${(newDate.getMonth()+ 1).toString().padStart(2, "0")}-${newDate.getDate().toString().padStart(2, "0")}`;
+          return `${newDate.getFullYear()}-${newDate.getMonth()}-${newDate.getDate()}`
+
+      })
+
+      console.log(timeCelcius)
+
+      const dates= timeCelcius
+      const datapoints = celcius
+      const data = {
+        labels: dates,
+        datasets: [{
+          label: 'Weekly Sales',
+          data: datapoints,
+          backgroundColor: [
+            'rgba(255, 26, 104, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(0, 0, 0, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 26, 104, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(0, 0, 0, 1)'
+          ],
+          borderWidth: 1
+        }]
+      };
+
+      // config 
+      const config = {
+        type: 'bar',
+        data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      };
+
+      // render init block
+      const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+
+      function filterDate(){
+        const dates2 = [...dates];
+        // console.log(dates2);
+
+        const startdate = document.getElementById('startdate');
+        const enddate = document.getElementById('enddate');
+
+        // get the index number in array
+        const indexstartdate = dates2.indexOf(startdate.value);
+        const indexenddate = dates2.indexOf(enddate.value);
+
+        // console.log(indexstartdate)
+
+        // slice the array (pie) only showing the selected section / slice
+        const filterDate = dates2.slice(indexstartdate, indexenddate + 1); //1 is index array
+        myChart.config.data.labels = filterDate;
+
+        // data poinst
+        const datapoints2 = [...datapoints];
+        const filterDataPoints = datapoints2.slice(indexstartdate, indexenddate + 1); //1 is index array
+        myChart.config.data.datasets[0].data = filterDataPoints;
+        myChart.update();
+      }
+    }
+  }
+</script>  -->

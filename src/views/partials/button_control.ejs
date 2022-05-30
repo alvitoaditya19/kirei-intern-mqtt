@@ -1,0 +1,196 @@
+<!-- AJAX BUTTON  -->
+<script>
+  var lampuStatus = false;
+  var pumpStatus = false;
+  var otomatisStatus = false;
+
+
+  $("#buttononoff").click(function () {
+    $.ajax({
+      type: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      dataType: "json",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual/62452a1b53bd72eb5a176274",
+      data: JSON.stringify({
+        statusKontrol: otomatisStatus == true ? "ON" : "OFF",
+      }),
+      success: function (data) {
+        $(".btn-lamp-off-status").toggleClass("btn-lamp-on");
+        console.log(data)
+        var x = document.getElementById("titlestatus");
+        if (data.data.statusKontrol === "ON") {
+          x.innerHTML = "OTOMATIS ON";
+        } else if  (data.data.statusKontrol === "OFF") {
+           x.innerHTML = "OTOMATIS OFF";
+        } else{
+          x.innerHTML = "NONE"
+        }
+        var img = document.getElementById('imgstatus').src;
+        if (img.indexOf('icon-lamp2.svg')!=-1) {
+            document.getElementById('imgstatus').src  = '/images/icon-lamp1.svg';
+        }
+         else {
+           document.getElementById('imgstatus').src = '/images/icon-lamp2.svg';
+       }
+       otomatisStatus = !otomatisStatus;
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  })
+
+
+  $("#buttonlampu1").click(function () {
+    $.ajax({
+      type: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      dataType: "json",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/lampu/62414bbd1a431cac0b339833",
+      data: JSON.stringify({
+        lampu1: lampuStatus == true ? "ON" : "OFF",
+      }),
+      success: function (data) {
+        var element1 = document.getElementById("buttonlampu1");
+        element1.classList.toggle("btn-lamp-on-lampu1");
+      
+        var element2 = document.getElementById("buttonlampu1");
+        element2.classList.toggle("btn-lamp-off-lampu1");
+
+        var x = document.getElementById("titleLampu1");
+
+        if (data.data.lampu1 === "ON") {
+          x.innerHTML = "Lampu 1 ON";
+        } else if  (data.data.lampu1 === "OFF") {
+           x.innerHTML = "Lampu 1 OFF";
+        } else{
+          x.innerHTML = "NONE"
+        }
+        
+        var img = document.getElementById('imgLampu1').src;
+        if (img.indexOf('icon-lamp2.svg')!=-1) {
+            document.getElementById('imgLampu1').src  = '/images/icon-lamp1.svg';
+        }
+         else {
+           document.getElementById('imgLampu1').src = '/images/icon-lamp2.svg';
+       }
+
+       lampuStatus = !lampuStatus;
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  })
+  $("#buttonlampu2").click(function () {
+    $.ajax({
+      type: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      dataType: "json",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/lampu/62414bbd1a431cac0b339833",
+      data: JSON.stringify({
+        lampu2: lampuStatus == true ? "ON" : "OFF",
+      }),
+      success: function (data) {
+        $(".btn-lamp-off-lampu2").toggleClass("btn-lamp-on");
+        var x = document.getElementById("titleLampu2");
+        if (data.data.lampu2 === "ON") {
+          x.innerHTML = "Lampu 2 ON";
+        } else if  (data.data.lampu2 === "OFF") {
+           x.innerHTML = "Lampu 2 OFF";
+        } else{
+          x.innerHTML = "NONE"
+        }
+        var img = document.getElementById('imgLampu2').src;
+        if (img.indexOf('icon-lamp2.svg')!=-1) {
+            document.getElementById('imgLampu2').src  = '/images/icon-lamp1.svg';
+        }
+         else {
+           document.getElementById('imgLampu2').src = '/images/icon-lamp2.svg';
+       }
+        lampuStatus = !lampuStatus;
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  })
+  $("#buttonpump1").click(function () {
+    $.ajax({
+      type: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      dataType: "json",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/pump/62430c4028e1eef562010284",
+      data: JSON.stringify({
+        pump1: pumpStatus == true ? "ON" : "OFF",
+      }),
+      success: function (data) {
+        $(".btn-lamp-off-pump1").toggleClass("btn-lamp-on");
+        var x = document.getElementById("titlePump1");
+        if (data.data.pump1 === "ON") {
+          x.innerHTML = "Pump 1 ON";
+        } else if  (data.data.pump1 === "OFF") {
+           x.innerHTML = "Pump 1 OFF";
+        } else{
+          x.innerHTML = "NONE"
+        }
+        var img = document.getElementById('imgPump1').src;
+        if (img.indexOf('icon-lamp2.svg')!=-1) {
+            document.getElementById('imgPump1').src  = '/images/icon-lamp1.svg';
+        }
+         else {
+           document.getElementById('imgPump1').src = '/images/icon-lamp2.svg';
+       }
+       pumpStatus = !pumpStatus;
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  })
+  $("#buttonpump2").click(function () {
+    $.ajax({
+      type: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      dataType: "json",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/pump/62430c4028e1eef562010284",
+      data: JSON.stringify({
+        pump2: pumpStatus == true ? "ON" : "OFF",
+      }),
+      success: function (data) {
+        $(".btn-lamp-off-pump2").toggleClass("btn-lamp-on");
+        var x = document.getElementById("titlePump2");
+        if (data.data.pump2 === "ON") {
+          x.innerHTML = "Pump 2 ON";
+        } else if  (data.data.pump2 === "OFF") {
+           x.innerHTML = "Pump 2 OFF";
+        } else{
+          x.innerHTML = "NONE"
+        }
+        var img = document.getElementById('imgPump2').src;
+        if (img.indexOf('icon-lamp2.svg')!=-1) {
+            document.getElementById('imgPump2').src  = '/images/icon-lamp1.svg';
+        }
+         else {
+           document.getElementById('imgPump2').src = '/images/icon-lamp2.svg';
+       }
+       pumpStatus = !pumpStatus;
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  })
+
+
+</script>

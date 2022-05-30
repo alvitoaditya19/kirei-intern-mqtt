@@ -1,0 +1,161 @@
+<%- include('../../partials/header.ejs') %>
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <!-- Sidebar -->
+  <%- include('../../partials/sidebar.ejs') %>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      <%- include('../../partials/navbar.ejs') %>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Welcome to Dashboard</h1>
+        <!-- Earnings (Monthly) Card Example -->
+        <button class="btn btn-primary btn-sm">
+          <i class="fas fa-folder">
+            <% if(lampu.lampu1 === 'OFF') { %> Matikan <% } else { %> Hidupkan
+            <% } %>
+          </i>
+        </button>
+        <div>
+          <h1 class="text-medium">Lampu 1</h1>
+        </div>
+        <div class="">
+          <% if(lampu.lampu1 === 'ON'){ %>
+            <div class="btn btn-success">
+              <%= lampu.lampu1 %>
+            </div>
+          <% } else if(lampu.lampu1 === 'OFF'){ %>
+            <div class="btn btn-danger">
+              <%= lampu.lampu1 %>
+            </div>
+          <% } %>
+        </div>
+        <form
+          action="/lampu/lampu1/62414bbd1a431cac0b339833?_method=PUT"
+          style="display: inline-block"
+          method="POST"
+        >
+          <% if(lampu.lampu1 === 'OFF') { %> 
+            <button class="btn btn-danger btn-sm">
+              <i class="fas fa-folder">
+               LAMPU 1 MATIKAN
+              </i>
+            </button>
+          <% } else if(lampu.lampu1 === 'ON')  { %> 
+            <button class="btn btn-primary btn-sm">
+              <i class="fas fa-folder">
+                LAMPU 1 HIDUPKAN
+              </i>
+            </button>
+          <% } %>
+
+        </form>
+        <form
+        action="/lampu/lampu2/62414bbd1a431cac0b339833?_method=PUT"
+        style="display: inline-block;"
+        method="POST"
+      >
+        <button class="btn btn-success btn-sm">
+          <i class="fas fa-folder">
+            <% if(lampu.lampu2 === 'OFF') { %> 
+              
+              Lampu 2 Matikan 
+              
+            <% } else { %>
+              Lampu 2 Hidupkan 
+            <% } %>
+          </i>
+        </button>
+      </form>
+      <div>
+        <h1 class="text-bold"><%= lampu.lampu1 %></h1>
+      </div>
+      <div>
+        <% if(lampu.lampu1 === 'ON'){ %>
+          <span class="badge badge-success"> Aktif </span>
+          <% } else { %>
+          <span class="badge badge-danger"> Tidak Aktif </span>
+          <% } %>
+      </div>
+        <button class="col-xl-2 col-md-5">
+          <div class="card py-2 button-click-1">
+            <div class="card-body text-center">
+              <div class="row">
+                <div class="col mr-2">
+                  <img
+                    src="/images/img-lamp.png"
+                    alt=""
+                    width="82"
+                    height="82"
+                  />
+                  <div class="h5 mb-0 font-weight-medium color-pallete1">
+                    Lamp 1
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </button>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <%- include('../../partials/footer.ejs') %>
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div
+  class="modal fade"
+  id="logoutModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Select "Logout" below if you are ready to end your current session.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+          Cancel
+        </button>
+        <a class="btn btn-primary" href="login.html">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/js.ejs') %>

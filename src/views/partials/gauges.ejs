@@ -1,0 +1,75 @@
+<script>
+  // setInterval(getDataLampu, 1000);
+  setInterval(getDataSuhu, 1000);
+  setInterval(getDataKelembapanTanah, 1000);
+  setInterval(getwaterlevel, 1000);
+  setInterval(getkeruhAir, 1000);
+
+  // function getDataLampu() {
+  //   $.ajax({
+  //     type: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/lampu/lampu",
+  //     success: function (dataItem) {
+  //       $("#lampu1").text(dataItem.data[0].lampu1 ?? "No Data");
+  //       $("#lampu2").text(dataItem.data[0].lampu2 ?? "No Data");
+  //     },
+  //   });
+  // }
+
+  function getDataSuhu() {
+    $.ajax({
+      type: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/suhu/get",
+      success: function (dataItem) {
+        $("#suhuCelcius").text(dataItem.data.slice(-1)[0].celcius ?? "No Data");
+        $("#humidity").text(dataItem.data.slice(-1)[0].humidity ?? "No Data");
+        // console.log(data.data.humidity)
+      },
+    });
+  }
+
+  function getDataKelembapanTanah() {
+    $.ajax({
+      type: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/tanah/get",
+      success: function (dataItem) {
+        $("#tanah").text(dataItem.data.slice(-1)[0].kelembapanTanah ?? "No Data");
+      },
+    });
+  }
+
+  function getwaterlevel() {
+    $.ajax({
+      type: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/water/get",
+      success: function (dataItem) {
+        $("#waterlevel").text(parseFloat(dataItem.data.slice(-1)[0].waterlevel ?? "No Data").toPrecision(3));
+      },
+    });
+  }
+
+  function getkeruhAir() {
+    $.ajax({
+      type: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/keruhair/get",
+      success: function (dataItem) {
+        $("#kekeruhanAir").text(dataItem.data.slice(-1)[0].kekeruhanAir ?? "No Data");
+      },
+    });
+  }
+</script>

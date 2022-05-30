@@ -1,0 +1,18 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Kelembapan Tanah</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < kelembapanTanah.length; i++){ %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= kelembapanTanah[i].kelembapanTanah %></td>
+        <td><%= kelembapanTanah[i].updatedAt %></td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>

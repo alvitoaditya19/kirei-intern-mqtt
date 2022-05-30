@@ -1,0 +1,247 @@
+body {
+  font: 14px "Poppins", Helvetica, Arial, sans-serif;
+}
+.blue {
+  color: blue;
+}
+.highlight {
+  background: yellow;
+}
+.title-dashboard {
+  font-weight: 600;
+  font-size: 28px;
+  color: #0f165c;
+  margin-bottom: 4px;
+}
+
+.subtitle-dashboard {
+  font-weight: 400;
+  font-size: 16px;
+  color: #828ea5;
+}
+.image-profile {
+  height: 50px;
+  width: 50px;
+}
+.user-name {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  margin-left: 8px;
+  color: #0f165c;
+}
+
+.title-monitoring {
+  font-weight: 600;
+  font-size: 20px;
+  color: #0d1458;
+  margin-bottom: 18px;
+}
+
+.monitoring .card {
+  background: #097eeb;
+  border-radius: 14px;
+  padding: 32px;
+}
+
+.monitoring .card-title {
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 0px;
+  color: #ffffff;
+}
+
+.monitoring .result {
+  font-weight: 500;
+  font-size: 16px;
+
+  color: #ffffff;
+}
+
+.monitoring .info {
+  font-weight: 300;
+  font-size: 10px;
+  color: #ffffff;
+}
+
+.card-icon {
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+}
+
+.color-pallete1 {
+  color: #0f165c;
+}
+
+.button-click-1 {
+  background-color: #097eeb;
+}
+
+.btn-lamp-on {
+  max-height: 150px;
+  background-color: #097eeb !important;
+  border-radius: 20px;
+  padding: 10px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lamp-on h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffff !important;
+}
+
+.btn-lamp-on-lampu1 {
+  max-height: 150px;
+  background-color: #097eeb !important;
+  border-radius: 20px;
+  padding: 10px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lamp-on-lampu1 h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffff !important;
+}
+
+.btn-lamp-off-lampu1 {
+  max-height: 150px;
+  background-color: #fff ;
+  color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lamp-off-lampu1 h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #097eeb;
+}
+
+.btn-lamp-off-lampu2 {
+  max-height: 150px;
+  background-color: #fff ;
+  color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lamp-off-lampu2 h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #097eeb;
+}
+
+.btn-lamp-off-pump1 {
+  max-height: 150px;
+  background-color: #fff ;
+  color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lamp-off-pump1 h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #097eeb;
+}
+
+.btn-lamp-off-pump2 {
+  max-height: 150px;
+  background-color: #fff ;
+  color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lamp-off-pump2 h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #097eeb;
+}
+
+.btn-lamp-off-status {
+  max-height: 150px;
+  background-color: #fff ;
+  color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lamp-off-status h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #097eeb;
+}
+
+.btn-lamp-off {
+  max-height: 150px;
+  background-color: #fff ;
+  color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lamp-off h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #097eeb;
+}
+
+
+.card-graph{
+  border-radius:10px
+}
+
+
+
+@media (min-width: 992px) {
+  .monitoring .card-title {
+    font-size: 18px;
+  }
+
+  .monitoring .result {
+    font-size: 24px;
+  }
+
+  .monitoring .info {
+    font-size: 16px;
+  }
+
+  .card-icon {
+    height: 80px;
+    width: 80px;
+    margin-right: 4px;
+  }
+  .card-graph{
+    border-radius:30px
+  }
+}

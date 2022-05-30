@@ -1,0 +1,65 @@
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+  crossorigin="anonymous"
+></script>
+<script>
+  var xmlhttp = new XMLHttpRequest();
+  var url = "https://kirei-intern-mqtt.herokuapp.com/api/v1/suhu/get";
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var data = JSON.parse(this.responseText);
+
+      var celcius = data.data.slice(-5, data.length).map(function (elem) {
+        return elem.celcius;
+      });
+
+      var humidity = data.data.slice(-5, data.length).map(function (elem) {
+        return elem.humidity;
+      });
+
+      var timeCelcius = data.data.slice(-5, data.length).map(function (elem) {
+        let newDate = new Date(elem.updatedAt);
+        return `${newDate.getFullYear()}-${(newDate.getMonth() + 1).toString().padStart(2, "0")}-${newDate.getDate().toString().padStart(2, "0")}`;
+      });
+      const ctx = document.getElementById("canvas").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: timeCelcius,
+          datasets: [
+            {
+              label: "Celcius",
+              data: celcius,
+              backgroundColor: "transparent",
+              borderColor: "red",
+              borderWidth: 4,
+            },
+            {
+              label: "Humidity",
+              data: humidity,
+              backgroundColor: "transparent",
+              borderColor: "green",
+              borderWidth: 4,
+            },
+          ],
+        },
+        options: {
+          elements: {
+            line: {
+              tension: 0,
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    }
+  };
+</script>

@@ -1,0 +1,639 @@
+<%- include('../../partials/header.ejs') %>
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <!-- Sidebar -->
+  <%- include('../../partials/sidebar.ejs') %>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      <%- include('../../partials/navbar.ejs') %>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <%- include ../../partials/message.ejs %>
+        <!-- Page Heading -->
+        <section id="content">
+          <div class="row mb-2 align-items-center pr-4">
+            <div class="col-sm-6 mr-auto">
+              <h1 class="title-dashboard">Dashboard</h1>
+              <h1 class="subtitle-dashboard">Manage Our IOT System</h1>
+            </div>
+            <div class="ml-lg-auto ml-4">
+              <div class="d-flex user-logged nav-item dropdown no-arrow">
+                <a
+                  href="#"
+                  role="button"
+                  id="dropdownMenuLink"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <div class="row align-items-center text-center">
+                    <img
+                      src="/images/ic-profile.svg"
+                      alt=""
+                      class="image-profile"
+                    />
+                    <h1 class="user-name"><%= name %></h1>
+                  </div>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuLink"
+                    style="right: 0; left: auto"
+                  >
+                    <li>
+                      <a href="/setting" class="dropdown-item">My Profile</a>
+                    </li>
+                    <li>
+                      <a href="/logout" class="dropdown-item" onclick=""
+                        >Sign Out</a
+                      >
+                    </li>
+                  </ul>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="row mt-lg-4">
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary py-2">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="ml-2"></div>
+                  <img
+                    src="/images/icon-user.png"
+                    alt=""
+                    height="50"
+                    width="50"
+                  />
+                  <div class="font-weight-medium color-pallete1 ml-2">
+                    Current <br />User
+                  </div>
+                </div>
+
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs text-gray-500 text-uppercase my-2">
+                      Total
+                    </div>
+                    <div class="h5 mb-0 font-weight-medium color-pallete1">
+                      <%= count.user %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success py-2">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="ml-2"></div>
+                  <img
+                    src="/images/icon-vegetable.png"
+                    alt=""
+                    height="50"
+                    width="50"
+                  />
+                  <div class="font-weight-medium color-pallete1 ml-2">
+                    Current <br />Vegetable
+                  </div>
+                </div>
+
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs text-gray-500 text-uppercase my-2">
+                      Total
+                    </div>
+                    <div class="h5 mb-0 font-weight-medium color-pallete1">
+                      <%= vegetable1.sum + vegetable2.sum %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning border py-2">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="ml-2"></div>
+                  <img
+                    src="/images/icon-weather.png"
+                    alt=""
+                    height="50"
+                    width="50"
+                  />
+                  <div class="font-weight-medium color-pallete1 ml-2">
+                    Weather <br />Monitoring
+                  </div>
+                </div>
+
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs text-gray-500 text-uppercase my-2">
+                      Total
+                    </div>
+                    <div class="h5 mb-0 font-weight-medium color-pallete1">
+                      Hujan
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row monitoring mb-lg-1 mb-5">
+          <div class="col-lg-6">
+            <h1 class="title-monitoring">Data Monitoring</h1>
+            <div class="row">
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body-monitoring">
+                    <h1 class="card-title">Suhu Celcius</h1>
+                    <p class="card-text hidden"></p>
+                    <div class="row align-items-center">
+                      <div class="">
+                        <img
+                          src="/images/ic-temp.svg"
+                          alt=""
+                          class="card-icon"
+                        />
+                      </div>
+                      <div class="ml-lg-3">
+                        <h1 class="result" id="suhuCelcius"></h1>
+                        <h1 class="info">celcius</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body-monitoring">
+                    <h1 class="card-title">Humidity</h1>
+                    <p class="card-text hidden"></p>
+                    <div class="row align-items-center">
+                      <div class="">
+                        <img
+                          src="/images/ic-temp.svg"
+                          alt=""
+                          class="card-icon"
+                        />
+                      </div>
+                      <div class="ml-lg-3">
+                        <h1 class="result" id="humidity"></h1>
+                        <h1 class="info">Relative Humidity</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body-monitoring">
+                    <h1 class="card-title">Kelembapan Tanah</h1>
+                    <p class="card-text hidden"></p>
+                    <div class="row align-items-center">
+                      <div class="">
+                        <img
+                          src="/images/ic-temp.svg"
+                          alt=""
+                          class="card-icon"
+                        />
+                      </div>
+                      <div class="ml-lg-3">
+                        <h1 class="result" id="tanah"></h1>
+                        <h1 class="info">Relative Humidity</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body-monitoring">
+                    <h1 class="card-title">Water Level</h1>
+                    <p class="card-text hidden"></p>
+                    <div class="row align-items-center">
+                      <div class="">
+                        <img
+                          src="/images/ic-temp.svg"
+                          alt=""
+                          class="card-icon"
+                        />
+                      </div>
+                      <div class="ml-lg-3">
+                        <h1 class="result" id="waterlevel"></h1>
+                        <h1 class="info">cm</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body-monitoring">
+                    <h1 class="card-title">TDS Level</h1>
+                    <p class="card-text hidden"></p>
+                    <div class="row align-items-center">
+                      <div class="">
+                        <img
+                          src="/images/ic-temp.svg"
+                          alt=""
+                          class="card-icon"
+                        />
+                      </div>
+                      <div class="ml-lg-3">
+                        <h1 class="result" id="kekeruhanAir"></h1>
+                        <h1 class="info">NTUs</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <h1 class="title-monitoring">Control Feature</h1>
+            <!-- FORM REQUEST -->
+            <div class="row mb-lg-3 mb-4">
+              <form
+                action="/dashboard/onOfManual/62452a1b53bd72eb5a176274?_method=PUT"
+                style="display: inline-block"
+                method="POST"
+              >
+                <% if(onOfManual.statusKontrol === 'OFF') { %>
+
+                <button class="btn-lamp-off btn">
+                  <img
+                    src="/images/icon-lamp2.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                  />
+
+                  <h1 class="title">OTOMATIS OFF</h1>
+                </button>
+
+                <% } else if(onOfManual.statusKontrol === 'ON') { %>
+
+                <button class="btn-lamp-on btn">
+                  <img
+                    src="/images/icon-lamp1.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                  />
+                  <h1 class="title">OTOMATIS ON</h1>
+                </button>
+
+                <% } %>
+              </form>
+            </div>
+            <div class="row">
+              <form
+                action="/dashboard/lampu1/62414bbd1a431cac0b339833?_method=PUT"
+                style="display: col-lg-6 col-12"
+                method="POST"
+                class="mb-3"
+              >
+                <% if(lampu.lampu1 === 'OFF') { %>
+                <div class="">
+                  <button class="btn-lamp-off btn">
+                    <img
+                      src="/images/icon-lamp2.svg"
+                      alt=""
+                      height="60"
+                      width="60"
+                      class="mb-2"
+                    />
+                    <h1 class="title">Lamp 1 OFF</h1>
+                  </button>
+                </div>
+                <% } else if(lampu.lampu1 === 'ON') { %>
+                <div class="">
+                  <button class="btn-lamp-on btn">
+                    <img
+                      src="/images/icon-lamp1.svg"
+                      alt=""
+                      height="60"
+                      width="60"
+                      class="mb-2"
+                    />
+                    <h1 class="title">Lamp 1 ON</h1>
+                  </button>
+                </div>
+                <% } %>
+              </form>
+              <form
+                action="/dashboard/lampu2/62414bbd1a431cac0b339833?_method=PUT"
+                style="display: col-lg-6 col-12"
+                method="POST"
+                class="mb-3"
+              >
+                <% if(lampu.lampu2 === 'OFF') { %>
+                <div class="">
+                  <button class="btn-lamp-off btn">
+                    <img
+                      src="/images/icon-lamp2.svg"
+                      alt=""
+                      height="60"
+                      width="60"
+                      class="mb-2"
+                    />
+                    <h1 class="title">Lamp 2 OFF</h1>
+                  </button>
+                </div>
+                <% } else if(lampu.lampu2 === 'ON') { %>
+                <div class="">
+                  <button class="btn-lamp-on btn">
+                    <img
+                      src="/images/icon-lamp1.svg"
+                      alt=""
+                      height="60"
+                      width="60"
+                      class="mb-2"
+                    />
+                    <h1 class="title">Lamp 2 ON</h1>
+                  </button>
+                </div>
+                <% } %>
+              </form>
+              <form
+                action="/dashboard/pump1/62430c4028e1eef562010284?_method=PUT"
+                style="display: col-lg-6 col-12"
+                method="POST"
+              >
+                <% if(pump.pump1 === 'OFF') { %>
+
+                <button class="btn-lamp-off btn">
+                  <img
+                    src="/images/icon-lamp2.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                  />
+
+                  <h1 class="title">Pump 1 OFF</h1>
+                </button>
+
+                <% } else if(pump.pump1 === 'ON') { %>
+
+                <button class="btn-lamp-on btn">
+                  <img
+                    src="/images/icon-lamp1.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                  />
+                  <h1 class="title">Pump 1 ON</h1>
+                </button>
+
+                <% } %>
+              </form>
+              <form
+                action="/dashboard/pump2/62430c4028e1eef562010284?_method=PUT"
+                style="display: col-lg-6 col-12"
+                method="POST"
+              >
+                <% if(pump.pump2 === 'OFF') { %>
+
+                <button class="btn-lamp-off btn">
+                  <img
+                    src="/images/icon-lamp2.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                  />
+                  <h1 class="title">Pump 2 OFF</h1>
+                </button>
+
+                <% } else if(pump.pump2 === 'ON') { %>
+
+                <button class="btn-lamp-on btn">
+                  <img
+                    src="/images/icon-lamp1.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                  />
+                  <h1 class="title">Pump 2 ON</h1>
+                </button>
+
+                <% } %>
+              </form>
+              <!-- AJAX -->
+              <!-- action="/dashboard/pump1/62430c4028e1eef562010284?_method=PUT" -->
+            </div>
+            <!-- AKHIR FORM REQUEST -->
+            <div class="mt-lg-3 mt-2">
+              <h1 class="title-monitoring">Control Feature Ajax</h1>
+            </div>
+
+            <!-- AJAX -->
+            <div class="mt-lg-3 mt-2">
+              <div class="row">
+                <button class="btn-lamp-off-status btn" id="buttononoff">
+                  <img
+                    src="/images/icon-lamp2.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                    id="imgstatus"
+                  />
+                  <h1 class="title" id="titlestatus">Press IT<br>OTOMATIS</h1>
+                </button>
+              </div>
+            </div>
+            <div class="row mt-lg-3 mt-2">
+              <button class="btn-lamp-off-lampu1 btn" id="buttonlampu1">
+                <img
+                  src="/images/icon-lamp2.svg"
+                  alt=""
+                  height="60"
+                  width="60"
+                  class="mb-2"
+                  id="imgLampu1"
+                />
+                <h1 class="title" id="titleLampu1">Press IT<br>LAMPU 1</h1>
+              </button>
+
+              <button class="btn-lamp-off-lampu2 btn lampu2" id="buttonlampu2">
+                <img
+                  src="/images/icon-lamp2.svg"
+                  alt=""
+                  height="60"
+                  width="60"
+                  class="mb-2"
+                  id="imgLampu2"
+                />
+                <h1 class="title" id="titleLampu2">Press IT<br>Lampu 2</h1> 
+                <!-- Lampu 2 OFF -->
+              </button>
+
+              <button class="btn-lamp-off-pump1 btn" id="buttonpump1">
+                <img
+                  src="/images/icon-lamp2.svg"
+                  alt=""
+                  height="60"
+                  width="60"
+                  class="mb-2"
+                  id="imgPump1"
+                />
+                <h1 class="title" id="titlePump1">Press IT<br>Pump 1</h1> 
+              </button>
+
+              <button class="btn-lamp-off-pump2 btn" id="buttonpump2">
+                <img
+                  src="/images/icon-lamp2.svg"
+                  alt=""
+                  height="60"
+                  width="60"
+                  class="mb-2"
+                  id="imgPump2"
+                />
+                <h1 class="title" id="titlePump2">Press IT<br>Pump 2</h1> 
+                <!-- Lampu 2 OFF -->
+              </button>
+            </div>
+
+            <!-- AKHIR AJAX -->
+          </div>
+        </div>
+        <div class="row mt-lg-4 mt-3">
+          <div class="col-lg-12">
+            <h1 class="title-monitoring">Grafik Data Realtime</h1>
+          </div>
+        </div>
+        <div class="container-fluid pb-lg-4 pb-3">
+          <div class="col-lg-12 bg-white p-lg-5 p-3 card-graph">
+            <div class="chartCard">
+              <div class="chartBox">
+                <canvas id="myChart"></canvas>
+                <input
+                  onchange="filterData()"
+                  type="date"
+                  id="startdate"
+                  value="2022-03-30"
+                />
+                <input
+                  onchange="filterData()"
+                  type="date"
+                  id="enddate"
+                  value="2022-04-07"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid pb-lg-5 pb-4">
+          <div class="col-lg-12 bg-white p-lg-5 p-3 card-graph">
+            <h4 class="text-center">Data Suhu Celcius dan Humidity</h4>
+            <div>
+              <canvas id="canvas"></canvas>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="container my-lg-4 my-3">
+          <div class="row">
+            <div
+              class="col-lg-5 bg-white rounded-3 px-lg-3 pt-lg-3 pt-4 mr-lg-5"
+            >
+              <h4 class="text-center">Celcius dan Humidity</h4>
+              <div>
+                <canvas
+                  id="chartJSContainer1"
+                  width="600"
+                  height="400"
+                ></canvas>
+              </div>
+            </div>
+            <div class="col-lg-5 bg-white rounded-3 px-lg-3 pt-lg-3 pt-4">
+              <h4 class="text-center">Celcius dan Humidity</h4>
+              <div>
+                <canvas
+                  id="chartJSContainer2"
+                  width="600"
+                  height="400"
+                ></canvas>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div id="myDiv">
+          <!-- Plotly chart will be drawn inside this DIV -->
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <%- include('../../partials/footer.ejs') %>
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div
+  class="modal fade"
+  id="logoutModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Select "Logout" below if you are ready to end your current session.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+          Cancel
+        </button>
+        <a class="btn btn-primary" href="login.html">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../../partials/button_control.ejs') %>
+<%- include('../../partials/graph2.ejs') %> 
+<%- include('../../partials/js.ejs') %> 
+<%- include('../../partials/graph_gauge.ejs') %> 
+<%- include('../../partials/gauges.ejs') %>
+<%- include('../../partials/graph.ejs') %>
