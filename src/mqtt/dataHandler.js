@@ -90,4 +90,14 @@ module.exports = {
             console.error(`Error ${error.message}`)
         }
     },
+    storeDataKeruhAir: async(payload) => {
+        const rawData = payload.toString()
+        try {
+            const dataJson = await JSON.parse(rawData)
+            const newData = await new KeruhAir(dataJson).save()
+        } catch (error) {
+            console.error(`Error ${error.message}`)
+        }
+    },
+    
 }
