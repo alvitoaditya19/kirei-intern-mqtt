@@ -1,16 +1,19 @@
+const OnOffManual = require("../../src/db/Models/OnOffManual");
 const Pump = require("../../src/db/Models/Pump");
 
 module.exports = {
-  pumpAPI: async (req, res, next) => {
+  pumpAPI: async (req, res) => {
     try {
+      const status = await OnOffManual.find();
+
       const pump = await Pump.find();
 
-      res.status(200).json({ data: pump });
+      res.status(200).json({ data: pump,status });
     } catch (err) {
       res.status(500).json({ message: err.message || `Internal Server Error` });
     }
   },
-  actionCreate: async (req, res, next) => {
+  actionCreate: async (req, res) => {
     try {
       const { pump1, pump2 } = req.body;
 
@@ -28,7 +31,7 @@ module.exports = {
     }
   },
 
-  updatePump: async (req, res, next) => {
+  updatePump: async (req, res) => {
     try {
       const {id} = req.params
       const { pump1 = "", pump2 = "" } = req.body;

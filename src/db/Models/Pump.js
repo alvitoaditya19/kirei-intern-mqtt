@@ -14,8 +14,8 @@ const pumpSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["Y", "N"],
-    default: "Y",
+    enum: ["ON", "OFF"],
+    default: "ON",
   },
 },{ timestamps: true });
 

@@ -1,4 +1,5 @@
 const Lampu = require("../../src/db/Models/Lampu");
+const OnOffManual = require("../../src/db/Models/OnOffManual");
 
 module.exports = {
   actionCreate: async (req, res) => {
@@ -68,9 +69,12 @@ module.exports = {
   },
   lampu: async (req, res) => {
     try {
-      const lampu = await Lampu.find();
+      const status = await OnOffManual.find().select('_id statusKontrol');
+      
+      const lampu = await Lampu.find().select('_id lampu1 lampu2');
+      const data = {lampu, status}
 
-      res.status(200).json({ data: lampu });
+      res.status(200).json({ data: data });
     } catch (err) {
       res.status(500).json({ message: err.message || `Internal Server Error` });
     }
