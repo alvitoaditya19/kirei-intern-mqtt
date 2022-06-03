@@ -53,15 +53,100 @@ module.exports = {
   actionStatusLampu1: async (req, res) => {
     try {
       const { id } = req.params;
-      let lampu = await Lampu.findOne({ _id: id });
-      let lampu1 = lampu.lampu1 === "ON" ? "OFF" : "ON";
+
+      // let statusKontrol = onOfManual.statusKontrol;
+
+      let lampu = await Lampu.findOne({}); //{ _id: "62414bbd1a431cac0b339833" }
+      let pump = await Pump.findOne({}); //_id: "62430c4028e1eef562010284"
+
+      let lampuStatus = lampu.status;
+
+      let lampu1Status = lampu.lampu1 === "ON" ? "OFF" : "ON";
+      let lampu2Status = lampu.lampu2;
+
+      let pumpStatus = pump.status;
+
+      let pump1Status = pump.pump1;
+      let pump2Status = pump.pump2;
 
       lampu = await Lampu.findOneAndUpdate(
         {
           _id: id,
         },
-        { lampu1 }
+        { 
+          // status: lampuStatus,
+          lampu1: lampu1Status,
+          // lampu2: lampu2Status,
+        }
       );
+
+      pump = await Pump.findOneAndUpdate(
+        {
+          _id: "62430c4028e1eef562010284",
+        },
+        { 
+          // status: pumpStatus,
+          // pump1: pump1Status,
+          // pump2: pump2Status,
+        }
+      );
+
+      const mqtt = require('mqtt')
+
+      const host = 'tos.kirei.co.id'
+      // const port = '1883'
+      const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
+
+      const connectUrl = `mqtt://${host}}`
+
+      const topicLamp = 'kirei/IOT/Lampu'
+      const topicPump = 'kirei/IOT/Pump'
+
+      const payloadLampu = {
+        lampu1: lampu1Status,
+        lampu2: lampu2Status,
+        status: lampuStatus
+      }
+      const payloadPump = {
+        status: pumpStatus,
+        pump1: pump1Status,
+        pump2: pump2Status
+      }
+
+      const dataJsonLampu = await JSON.stringify(payloadLampu)
+      const dataJsonPump = await JSON.stringify(payloadPump)
+
+      const client = mqtt.connect(connectUrl, {
+        clientId,
+        clean: true,
+        connectTimeout: 4000,
+        // username: 'emqx',
+        // password: 'public',
+        // reconnectPeriod: 1000,
+      })
+      client.on('connect', () => {
+        // console.log('Connected')
+        // client.subscribe([topic], () => {
+        //   console.log(`Subscribe to topic '${topic}'`)
+        // }) 
+
+        client.publish(topicLamp, dataJsonLampu, { qos: 1, retain: true }, (error) => {
+          if (error) {
+            console.error(error)
+          }
+
+        })
+
+        client.publish(topicPump, dataJsonPump, { qos: 1, retain: true }, (error) => {
+       if (error) {
+            console.error(error)
+          }
+
+        })
+      })
+      client.on('message', (topic, payload) => {
+        // console.log('Received Message:', topic, payload.toString())
+      })
 
       req.flash("alertMessage", "Berhasil Ubah Status");
       req.flash("alertStatus", "success");
@@ -77,15 +162,100 @@ module.exports = {
   actionStatusLampu2: async (req, res) => {
     try {
       const { id } = req.params;
-      let lampu = await Lampu.findOne({ _id: id });
-      let lampu2 = lampu.lampu2 === "ON" ? "OFF" : "ON";
+
+      // let statusKontrol = onOfManual.statusKontrol;
+
+      let lampu = await Lampu.findOne({}); //{ _id: "62414bbd1a431cac0b339833" }
+      let pump = await Pump.findOne({}); //_id: "62430c4028e1eef562010284"
+
+      let lampuStatus = lampu.status;
+
+      let lampu1Status = lampu.lampu1;
+      let lampu2Status = lampu.lampu2 === "ON" ? "OFF" : "ON";
+
+      let pumpStatus = pump.status;
+
+      let pump1Status = pump.pump1;
+      let pump2Status = pump.pump2;
 
       lampu = await Lampu.findOneAndUpdate(
         {
           _id: id,
         },
-        { lampu2 }
+        { 
+          // status: lampuStatus,
+          // lampu1: lampu1Status,
+          lampu2: lampu2Status,
+        }
       );
+
+      pump = await Pump.findOneAndUpdate(
+        {
+          _id: "62430c4028e1eef562010284",
+        },
+        { 
+          // status: pumpStatus,
+          // pump1: pump1Status,
+          // pump2: pump2Status,
+        }
+      );
+
+      const mqtt = require('mqtt')
+
+      const host = 'tos.kirei.co.id'
+      // const port = '1883'
+      const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
+
+      const connectUrl = `mqtt://${host}}`
+
+      const topicLamp = 'kirei/IOT/Lampu'
+      const topicPump = 'kirei/IOT/Pump'
+
+      const payloadLampu = {
+        lampu1: lampu1Status,
+        lampu2: lampu2Status,
+        status: lampuStatus
+      }
+      const payloadPump = {
+        status: pumpStatus,
+        pump1: pump1Status,
+        pump2: pump2Status
+      }
+
+      const dataJsonLampu = await JSON.stringify(payloadLampu)
+      const dataJsonPump = await JSON.stringify(payloadPump)
+
+      const client = mqtt.connect(connectUrl, {
+        clientId,
+        clean: true,
+        connectTimeout: 4000,
+        // username: 'emqx',
+        // password: 'public',
+        // reconnectPeriod: 1000,
+      })
+      client.on('connect', () => {
+        // console.log('Connected')
+        // client.subscribe([topic], () => {
+        //   console.log(`Subscribe to topic '${topic}'`)
+        // }) 
+
+        client.publish(topicLamp, dataJsonLampu, { qos: 1, retain: true }, (error) => {
+          if (error) {
+            console.error(error)
+          }
+
+        })
+
+        client.publish(topicPump, dataJsonPump, { qos: 1, retain: true }, (error) => {
+       if (error) {
+            console.error(error)
+          }
+
+        })
+      })
+      client.on('message', (topic, payload) => {
+        // console.log('Received Message:', topic, payload.toString())
+      })
 
       req.flash("alertMessage", "Berhasil Ubah Status");
       req.flash("alertStatus", "success");
@@ -100,15 +270,100 @@ module.exports = {
   actionStatusPump1: async (req, res) => {
     try {
       const { id } = req.params;
-      let pump = await Pump.findOne({ _id: id });
-      let pump1 = pump.pump1 === "ON" ? "OFF" : "ON";
 
-      pump = await Pump.findOneAndUpdate(
+      // let statusKontrol = onOfManual.statusKontrol;
+
+      let lampu = await Lampu.findOne({}); //{ _id: "62414bbd1a431cac0b339833" }
+      let pump = await Pump.findOne({}); //_id: "62430c4028e1eef562010284"
+
+      let lampuStatus = lampu.status;
+
+      let lampu1Status = lampu.lampu1;
+      let lampu2Status = lampu.lampu2 ;
+
+      let pumpStatus = pump.status;
+
+      let pump1Status = pump.pump1 === "ON" ? "OFF" : "ON";
+      let pump2Status = pump.pump2;
+
+      lampu = await Lampu.findOneAndUpdate(
         {
           _id: id,
         },
-        { pump1 }
+        { 
+          // status: lampuStatus,
+          // lampu1: lampu1Status,
+          // lampu2: lampu2Status,
+        }
       );
+
+      pump = await Pump.findOneAndUpdate(
+        {
+          _id: "62430c4028e1eef562010284",
+        },
+        { 
+          // status: pumpStatus,
+          pump1: pump1Status,
+          // pump2: pump2Status,
+        }
+      );
+
+      const mqtt = require('mqtt')
+
+      const host = 'tos.kirei.co.id'
+      // const port = '1883'
+      const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
+
+      const connectUrl = `mqtt://${host}}`
+
+      const topicLamp = 'kirei/IOT/Lampu'
+      const topicPump = 'kirei/IOT/Pump'
+
+      const payloadLampu = {
+        lampu1: lampu1Status,
+        lampu2: lampu2Status,
+        status: lampuStatus
+      }
+      const payloadPump = {
+        status: pumpStatus,
+        pump1: pump1Status,
+        pump2: pump2Status
+      }
+
+      const dataJsonLampu = await JSON.stringify(payloadLampu)
+      const dataJsonPump = await JSON.stringify(payloadPump)
+
+      const client = mqtt.connect(connectUrl, {
+        clientId,
+        clean: true,
+        connectTimeout: 4000,
+        // username: 'emqx',
+        // password: 'public',
+        // reconnectPeriod: 1000,
+      })
+      client.on('connect', () => {
+        // console.log('Connected')
+        // client.subscribe([topic], () => {
+        //   console.log(`Subscribe to topic '${topic}'`)
+        // }) 
+
+        client.publish(topicLamp, dataJsonLampu, { qos: 1, retain: true }, (error) => {
+          if (error) {
+            console.error(error)
+          }
+
+        })
+
+        client.publish(topicPump, dataJsonPump, { qos: 1, retain: true }, (error) => {
+       if (error) {
+            console.error(error)
+          }
+
+        })
+      })
+      client.on('message', (topic, payload) => {
+        // console.log('Received Message:', topic, payload.toString())
+      })
 
       req.flash("alertMessage", "Berhasil Ubah Status");
       req.flash("alertStatus", "success");
@@ -123,15 +378,100 @@ module.exports = {
   actionStatusPump2: async (req, res) => {
     try {
       const { id } = req.params;
-      let pump = await Pump.findOne({ _id: id });
-      let pump2 = pump.pump2 === "ON" ? "OFF" : "ON";
 
-      pump = await Pump.findOneAndUpdate(
+      // let statusKontrol = onOfManual.statusKontrol;
+
+      let lampu = await Lampu.findOne({}); //{ _id: "62414bbd1a431cac0b339833" }
+      let pump = await Pump.findOne({}); //_id: "62430c4028e1eef562010284"
+
+      let lampuStatus = lampu.status;
+
+      let lampu1Status = lampu.lampu1;
+      let lampu2Status = lampu.lampu2 ;
+
+      let pumpStatus = pump.status;
+
+      let pump1Status = pump.pump1;
+      let pump2Status = pump.pump2 === "ON" ? "OFF" : "ON";
+
+      lampu = await Lampu.findOneAndUpdate(
         {
           _id: id,
         },
-        { pump2 }
+        { 
+          // status: lampuStatus,
+          // lampu1: lampu1Status,
+          // lampu2: lampu2Status,
+        }
       );
+
+      pump = await Pump.findOneAndUpdate(
+        {
+          _id: "62430c4028e1eef562010284",
+        },
+        { 
+          // status: pumpStatus,
+          // pump1: pump1Status,
+          pump2: pump2Status,
+        }
+      );
+
+      const mqtt = require('mqtt')
+
+      const host = 'tos.kirei.co.id'
+      // const port = '1883'
+      const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
+
+      const connectUrl = `mqtt://${host}}`
+
+      const topicLamp = 'kirei/IOT/Lampu'
+      const topicPump = 'kirei/IOT/Pump'
+
+      const payloadLampu = {
+        lampu1: lampu1Status,
+        lampu2: lampu2Status,
+        status: lampuStatus
+      }
+      const payloadPump = {
+        status: pumpStatus,
+        pump1: pump1Status,
+        pump2: pump2Status
+      }
+
+      const dataJsonLampu = await JSON.stringify(payloadLampu)
+      const dataJsonPump = await JSON.stringify(payloadPump)
+
+      const client = mqtt.connect(connectUrl, {
+        clientId,
+        clean: true,
+        connectTimeout: 4000,
+        // username: 'emqx',
+        // password: 'public',
+        // reconnectPeriod: 1000,
+      })
+      client.on('connect', () => {
+        // console.log('Connected')
+        // client.subscribe([topic], () => {
+        //   console.log(`Subscribe to topic '${topic}'`)
+        // }) 
+
+        client.publish(topicLamp, dataJsonLampu, { qos: 1, retain: true }, (error) => {
+          if (error) {
+            console.error(error)
+          }
+
+        })
+
+        client.publish(topicPump, dataJsonPump, { qos: 1, retain: true }, (error) => {
+       if (error) {
+            console.error(error)
+          }
+
+        })
+      })
+      client.on('message', (topic, payload) => {
+        // console.log('Received Message:', topic, payload.toString())
+      })
 
       req.flash("alertMessage", "Berhasil Ubah Status");
       req.flash("alertStatus", "success");
@@ -148,8 +488,22 @@ module.exports = {
   actionStatusControl: async (req, res) => {
     try {
       const { id } = req.params;
+
       let onOfManual = await OnOfManual.findOne({ _id: id });
       let statusKontrol = onOfManual.statusKontrol === "ON" ? "OFF" : "ON";
+
+      let lampu = await Lampu.findOne({}); //{ _id: "62414bbd1a431cac0b339833" }
+      let pump = await Pump.findOne({}); //_id: "62430c4028e1eef562010284"
+
+      let lampuStatus = lampu.status === "ON" ? "OFF" : "ON";
+
+      let lampu1Status = lampu.lampu1;
+      let lampu2Status = lampu.lampu2;
+
+      let pumpStatus = pump.status === "ON" ? "OFF" : "ON";
+
+      let pump1Status = pump.pump1;
+      let pump2Status = pump.pump2;
 
       onOfManual = await OnOfManual.findOneAndUpdate(
         {
@@ -157,6 +511,87 @@ module.exports = {
         },
         { statusKontrol }
       );
+
+      lampu = await Lampu.findOneAndUpdate(
+        {
+          _id: "62414bbd1a431cac0b339833",
+        },
+        { 
+          status: lampuStatus,
+          // lampu1: lampu1Status,
+          // lampu2: lampu2Status,
+        }
+      );
+
+      pump = await Pump.findOneAndUpdate(
+        {
+          _id: "62430c4028e1eef562010284",
+        },
+        { 
+          status: pumpStatus,
+          // pump1: pump1Status,
+          // pump2: pump2Status,
+        }
+      );
+
+      const mqtt = require('mqtt')
+
+      const host = 'tos.kirei.co.id'
+      // const port = '1883'
+      const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
+
+      const connectUrl = `mqtt://${host}}`
+
+      const topicLamp = 'kirei/IOT/Lampu'
+      const topicPump = 'kirei/IOT/Pump'
+
+      const payloadLampu = {
+        lampu1: lampu1Status,
+        lampu2: lampu2Status,
+        status: lampuStatus
+      }
+      const payloadPump = {
+        status: pumpStatus,
+        pump1: pump1Status,
+        pump2: pump2Status
+      }
+
+      const dataJsonLampu = await JSON.stringify(payloadLampu)
+      const dataJsonPump = await JSON.stringify(payloadPump)
+
+      const client = mqtt.connect(connectUrl, {
+        clientId,
+        clean: true,
+        connectTimeout: 4000,
+        // username: 'emqx',
+        // password: 'public',
+        // reconnectPeriod: 1000,
+      })
+      client.on('connect', () => {
+        // console.log('Connected')
+        // client.subscribe([topic], () => {
+        //   console.log(`Subscribe to topic '${topic}'`)
+        // }) 
+
+        client.publish(topicLamp, dataJsonLampu, { qos: 1, retain: true }, (error) => {
+          if (error) {
+            console.error(error)
+          }
+
+        })
+
+        client.publish(topicPump, dataJsonPump, { qos: 1, retain: true }, (error) => {
+       if (error) {
+            console.error(error)
+          }
+
+        })
+      })
+      client.on('message', (topic, payload) => {
+        // console.log('Received Message:', topic, payload.toString())
+      })
+
+
 
       req.flash("alertMessage", "Berhasil Ubah Status");
       req.flash("alertStatus", "success");
