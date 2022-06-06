@@ -99,8 +99,8 @@ module.exports = {
 
       const connectUrl = `mqtt://${host}}`
 
-      const topicLamp = 'kirei/IOT/Lampu'
-      const topicPump = 'kirei/IOT/Pump'
+      const topicLamp = 'intern-KIREI/IOT/Lampu'
+      const topicPump = 'intern-KIREI/IOT/Pump'
 
       const payloadLampu = {
         lampu1: lampu1Status,
@@ -208,8 +208,8 @@ module.exports = {
 
       const connectUrl = `mqtt://${host}}`
 
-      const topicLamp = 'kirei/IOT/Lampu'
-      const topicPump = 'kirei/IOT/Pump'
+      const topicLamp = 'intern-KIREI/IOT/Lampu'
+      const topicPump = 'intern-KIREI/IOT/Pump'
 
       const payloadLampu = {
         lampu1: lampu1Status,
@@ -316,8 +316,8 @@ module.exports = {
 
       const connectUrl = `mqtt://${host}}`
 
-      const topicLamp = 'kirei/IOT/Lampu'
-      const topicPump = 'kirei/IOT/Pump'
+      const topicLamp = 'intern-KIREI/IOT/Lampu'
+      const topicPump = 'intern-KIREI/IOT/Pump'
 
       const payloadLampu = {
         lampu1: lampu1Status,
@@ -424,8 +424,8 @@ module.exports = {
 
       const connectUrl = `mqtt://${host}}`
 
-      const topicLamp = 'kirei/IOT/Lampu'
-      const topicPump = 'kirei/IOT/Pump'
+      const topicLamp = 'intern-KIREI/IOT/Lampu'
+      const topicPump = 'intern-KIREI/IOT/Pump'
 
       const payloadLampu = {
         lampu1: lampu1Status,
@@ -542,8 +542,8 @@ module.exports = {
 
       const connectUrl = `mqtt://${host}}`
 
-      const topicLamp = 'kirei/IOT/Lampu'
-      const topicPump = 'kirei/IOT/Pump'
+      const topicLamp = 'intern-KIREI/IOT/Lampu'
+      const topicPump = 'intern-KIREI/IOT/Pump'
 
       const payloadLampu = {
         lampu1: lampu1Status,
@@ -590,8 +590,6 @@ module.exports = {
       client.on('message', (topic, payload) => {
         // console.log('Received Message:', topic, payload.toString())
       })
-
-
 
       req.flash("alertMessage", "Berhasil Ubah Status");
       req.flash("alertStatus", "success");

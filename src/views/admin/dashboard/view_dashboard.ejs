@@ -221,6 +221,69 @@
               <div class="col-6">
                 <div class="card">
                   <div class="card-body-monitoring">
+                    <h1 class="card-title">Nitrat Tanah</h1>
+                    <p class="card-text hidden"></p>
+                    <div class="row align-items-center">
+                      <div class="">
+                        <img
+                          src="/images/ic-temp.svg"
+                          alt=""
+                          class="card-icon"
+                        />
+                      </div>
+                      <div class="ml-lg-3">
+                        <h1 class="result" id="nitratTanah"></h1>
+                        <h1 class="info">Relative Humidity</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body-monitoring">
+                    <h1 class="card-title">Nutrisi Tanah</h1>
+                    <p class="card-text hidden"></p>
+                    <div class="row align-items-center">
+                      <div class="">
+                        <img
+                          src="/images/ic-temp.svg"
+                          alt=""
+                          class="card-icon"
+                        />
+                      </div>
+                      <div class="ml-lg-3">
+                        <h1 class="result" id="kadarTanah"></h1>
+                        <h1 class="info">Relative Humidity</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body-monitoring">
+                    <h1 class="card-title">PH Tanah</h1>
+                    <p class="card-text hidden"></p>
+                    <div class="row align-items-center">
+                      <div class="">
+                        <img
+                          src="/images/ic-temp.svg"
+                          alt=""
+                          class="card-icon"
+                        />
+                      </div>
+                      <div class="ml-lg-3">
+                        <h1 class="result" id="phTanah"></h1>
+                        <h1 class="info">Relative Humidity</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body-monitoring">
                     <h1 class="card-title">Water Level</h1>
                     <p class="card-text hidden"></p>
                     <div class="row align-items-center">
@@ -271,7 +334,7 @@
                 style="display: inline-block"
                 method="POST"
               >
-                <% if(onOfManual.statusKontrol === 'OFF') { %>
+                <% if(onOfManual.statusKontrol === 'ON') { %>
 
                 <button class="btn-lamp-off btn">
                   <img
@@ -285,7 +348,7 @@
                   <h1 class="title">OTOMATIS OFF</h1>
                 </button>
 
-                <% } else if(onOfManual.statusKontrol === 'ON') { %>
+                <% } else if(onOfManual.statusKontrol === 'OFF') { %>
 
                 <button class="btn-lamp-on btn">
                   <img

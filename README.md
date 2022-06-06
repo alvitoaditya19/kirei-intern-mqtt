@@ -11,7 +11,7 @@ Instalation step
 
 Device Configuration (Hardware)
 - Protocol Used MQTT
-- Example Topic = kirei/IOT
+- Example Topic = intern-KIREI/IOT
 - Device should publish valid JSON String 
 
 

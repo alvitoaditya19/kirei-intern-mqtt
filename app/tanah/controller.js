@@ -1,4 +1,4 @@
-const KelembapanTanah = require("../../src/db/Models/Tanah");
+const Tanah = require("../../src/db/Models/Tanah");
 
 module.exports = {
   index: async (req, res) => {
@@ -7,11 +7,11 @@ module.exports = {
       const alertStatus = req.flash("alertStatus");
 
       const alert = { message: alertMessage, status: alertStatus };
-      const kelembapanTanah = await KelembapanTanah.find();
+      const tanah = await Tanah.find();
 
       res.render("admin/tanah/view_tanah", {
         alert,
-        kelembapanTanah,
+        tanah,
         name: req.session.admin.name,
         title: "Halaman User",
       });
@@ -21,18 +21,21 @@ module.exports = {
       res.redirect("/tanah");
     }
   },
-  postData: async (req, res, next) => {
+  postData: async (req, res) => {
     try {
-      const { kelembapanTanah } = req.body;
+      const { kelembapanTanah, nitratTanah, kadarTanah, phTanah  } = req.body;
 
       const payload = {
         kelembapanTanah: kelembapanTanah,
+        nitratTanah:nitratTanah,
+        kadarTanah: kadarTanah,
+        phTanah:phTanah
       };
 
-      const kelentan = new KelembapanTanah(payload);
-      await kelentan.save();
+      const tanah = new Tanah(payload);
+      await tanah.save();
 
-      res.status(200).json({ data: kelentan });
+      res.status(200).json({ data: tanah });
 
     } catch (err) {
       res.status(500).json({message: err.message || `Internal Server Error`});
@@ -40,22 +43,26 @@ module.exports = {
   },
   getData: async(req, res)=>{
     try {
-      const tanah = await KelembapanTanah.find();
+      const tanah = await Tanah.find();
 
         res.status(200).json({data: tanah});
     } catch (err) {
       res.status(500).json({message: err.message || `Internal Server Error`})
     }
   },
-  updateTanah: async (req, res, next) => {
+  updateTanah: async (req, res) => {
     try {
-      const { kelembapanTanah = "" } = req.body
+      const { kelembapanTanah = "",nitratTanah = "", kadarTanah = "", phTanah= "" } = req.body
 
       const payload = {}
 
       if (kelembapanTanah.length) payload.kelembapanTanah = kelembapanTanah
+      if (nitratTanah.length) payload.kelembapanTanah = nitratTanah
+      if (kadarTanah.length) payload.kelembapanTanah = kadarTanah
+      if (phTanah.length) payload.kelembapanTanah = phTanah
 
-      const kelemtan = await KelembapanTanah.findOneAndUpdate({
+
+      const kelemtan = await Tanah.findOneAndUpdate({
         _id: "6237ce9d0e0c2df0964e1272"
       }, payload, { new: true, runValidators: true })
 
@@ -63,6 +70,9 @@ module.exports = {
         data: {
           id: kelemtan.id,
           kelembapanTanah: kelemtan.kelembapanTanah,
+          nitratTanah: kelemtan.nitratTanah,
+          kadarTanah: kelemtan.kadarTanah,
+          phTanah: kelemtan.phTanah,
         }
       })
     } catch (err) {

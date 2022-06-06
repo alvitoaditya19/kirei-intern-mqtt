@@ -1,4 +1,4 @@
-<!-- AJAX BUTTON  -->
+AJAX BUTTON 
 <script>
   var lampuStatus = false;
   var pumpStatus = false;
@@ -12,7 +12,7 @@
         "Content-Type": "application/json",
       },
       dataType: "json",
-      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual/62452a1b53bd72eb5a176274",
+      url: "http://localhost:5000/api/v1/onOfManual/62452a1b53bd72eb5a176274",
       data: JSON.stringify({
         statusKontrol: otomatisStatus == true ? "ON" : "OFF",
       }),
@@ -50,7 +50,7 @@
         "Content-Type": "application/json",
       },
       dataType: "json",
-      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/lampu/62414bbd1a431cac0b339833",
+      url: "http://localhost:5000/api/v1/lampu/62414bbd1a431cac0b339833",
       data: JSON.stringify({
         lampu1: lampuStatus == true ? "ON" : "OFF",
       }),
@@ -93,7 +93,7 @@
         "Content-Type": "application/json",
       },
       dataType: "json",
-      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/lampu/62414bbd1a431cac0b339833",
+      url: "http://localhost:5000/api/v1/lampu/button/lampu2/62414bbd1a431cac0b339833",
       data: JSON.stringify({
         lampu2: lampuStatus == true ? "ON" : "OFF",
       }),

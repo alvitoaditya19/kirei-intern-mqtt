@@ -12,40 +12,39 @@ const client = mqtt.connect(process.env.MQTT_HOST)
 
 client.on('connect',()=> {
     console.log("MQTT Broker connected");
-    client.subscribe('kirei/IOT',() => console.log('kirei/IOT subscribed'));
-    client.subscribe('kirei/IOT/KeruhAir',() => console.log('kirei/IOT/KeruhAir subscribed'));
-    client.subscribe('kirei/IOT/ButtonManual',() => console.log('kirei/IOT/ButtonManual subscribed'));
-    client.subscribe('kirei/IOT/Lampu',() => console.log('kirei/IOT/Lampu subscribed'));
-    client.subscribe('kirei/IOT/KelembapanTanah',() => console.log('kirei/IOT/KelembapanTanah subscribed'));4
-    client.subscribe('kirei/IOT/WaterLevel',() => console.log('kirei/IOT/WaterLevel subscribed'));
-    client.subscribe('kirei/IOT/Suhu',() => console.log('kirei/IOT/Suhu subscribed'));
-    client.subscribe('kirei/IOT/Pump',() => console.log('kirei/IOT/Pump subscribed'));
-
+    client.subscribe('intern-intern-KIREI/IOT',() => console.log('intern-intern-KIREI/IOT subscribed'));
+    client.subscribe('intern-intern-KIREI/IOT/KeruhAir',() => console.log('intern-intern-KIREI/IOT/KeruhAir subscribed'));
+    client.subscribe('intern-intern-KIREI/IOT/ButtonManual',() => console.log('intern-intern-KIREI/IOT/ButtonManual subscribed'));
+    client.subscribe('intern-intern-KIREI/IOT/Lampu',() => console.log('intern-intern-KIREI/IOT/Lampu subscribed'));
+    client.subscribe('intern-intern-KIREI/IOT/KelembapanTanah',() => console.log('intern-intern-KIREI/IOT/KelembapanTanah subscribed'));4
+    client.subscribe('intern-intern-KIREI/IOT/WaterLevel',() => console.log('intern-intern-KIREI/IOT/WaterLevel subscribed'));
+    client.subscribe('intern-intern-KIREI/IOT/Suhu',() => console.log('intern-intern-KIREI/IOT/Suhu subscribed'));
+    client.subscribe('intern-intern-KIREI/IOT/Pump',() => console.log('intern-intern-KIREI/IOT/Pump subscribed'));
 })
 
 //Device message should be in JSON string format
 client.on('message',(topic,payload) => {
-    if(topic === 'kirei/IOT'){
+    if(topic === 'intern-intern-KIREI/IOT'){
         storeData(payload)
-    }else if(topic === 'kirei/IOT/KeruhAir'){
+    }else if(topic === 'intern-intern-KIREI/IOT/KeruhAir'){
         storeDataKeruhAir(payload)
-    }else if(topic === 'kirei/IOT/ButtonManual'){
+    }else if(topic === 'intern-intern-KIREI/IOT/ButtonManual'){
         // storeDataLampu(payload)
         getDataButtonManual(payload)
     }
-    else if(topic === 'kirei/IOT/Lampu'){
+    else if(topic === 'intern-intern-KIREI/IOT/Lampu'){
         // storeDataLampu(payload)
         getDataLampu(payload)
-    }else if(topic === 'kirei/IOT/Pump'){
+    }else if(topic === 'intern-intern-KIREI/IOT/Pump'){
         // storeDataLampu(payload)
         getDataPump(payload)
-    }else if(topic === 'kirei/IOT/KelembapanTanah'){
+    }else if(topic === 'intern-intern-KIREI/IOT/Tanah'){
         storeDataKelembapanTanah(payload)
     }
-    else if(topic === 'kirei/IOT/WaterLevel'){
+    else if(topic === 'intern-intern-KIREI/IOT/WaterLevel'){
         storeDataWaterLevel(payload)
     }
-    else if(topic === 'kirei/IOT/Suhu'){
+    else if(topic === 'intern-intern-KIREI/IOT/Suhu'){
         storeDataSuhu(payload)
     }
 })
