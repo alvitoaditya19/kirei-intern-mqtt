@@ -23,7 +23,7 @@ const userRouter = require("../app/user/router");
 const settingRouter = require("../app/setting/router");
 const suhuRouter = require("../app/suhu/router");
 const waterRouter = require("../app/water/router");
-const keruhRouter = require("../app/keruhair/router");
+const keruhRouter = require("../app/air/router");
 const onOfControlRouter = require("../app/onOfManual/router");
 const tanahRouter = require("../app/tanah/router");
 

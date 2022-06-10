@@ -1,4 +1,4 @@
-const KekeruhanAir = require("../../src/db/Models/KeruhAir");
+const Air = require("../../src/db/Models/Air");
 
 module.exports = {
   index: async (req, res) => {
@@ -7,7 +7,7 @@ module.exports = {
       const alertStatus = req.flash("alertStatus");
 
       const alert = { message: alertMessage, status: alertStatus };
-      const keruhAir = await KekeruhanAir.find();
+      const keruhAir = await Air.find();
 
       keruhAir.sort(function(a, b) {
         var keyA = new Date(a.updatedAt),
@@ -32,8 +32,8 @@ module.exports = {
   },
   getTds: async (req, res) => {
     try {
-      const keruhAir = await KekeruhanAir.find();
-      keruhAir.sort(function(a, b) {
+      const air = await Air.find();
+      air.sort(function(a, b) {
         var keyA = new Date(a.updatedAt),
           keyB = new Date(b.updatedAt);
         // Compare the 2 dates
@@ -41,23 +41,26 @@ module.exports = {
         if (keyA > keyB) return 1;
         return 0;
       });
-      res.status(200).json({ data: keruhAir });
+      res.status(200).json({ data: air });
     } catch (err) {
       res.status(500).json({ message: err.message || `Internal Server Error` });
     }
   },
   postTds: async (req, res) => {
     try {
-      const { kekeruhanAir } = req.body;
+      const { kekeruhanAir, phAir,oksigen } = req.body;
 
       const payload = {
         kekeruhanAir: kekeruhanAir,
+        phAir: phAir,
+        oksigen: oksigen,
+
       };
 
-      const keruhAir = new KekeruhanAir(payload);
-      await keruhAir.save();
+      const air = new Air(payload);
+      await air.save();
 
-      res.status(200).json({ data: keruhAir });
+      res.status(200).json({ data: air });
     } catch (err) {
       res.status(500).json({ message: err.message || `Internal Server Error` });
     }
@@ -65,13 +68,15 @@ module.exports = {
   updateTds: async (req, res) => {
     try {
       // const { id } = req.params;
-      const { kekeruhanAir = "" } = req.body;
+      const { kekeruhanAir = "", phAir = "",oksigen = "" } = req.body;
 
       const payload = {};
 
       if (kekeruhanAir.length) payload.kekeruhanAir = kekeruhanAir;
+      if (phAir.length) payload.kekeruhanAir = phAir;
+      if (oksigen.length) payload.kekeruhanAir = oksigen;
 
-      const keruhAir = await KekeruhanAir.findOneAndUpdate(
+      const keruhAir = await Air.findOneAndUpdate(
         {
           _id: "6255747f5b79b549bf92242e",
         },
@@ -83,6 +88,9 @@ module.exports = {
         data: {
           id: keruhAir.id,
           kekeruhanAir: keruhAir.kekeruhanAir,
+          phAir: keruhAir.phAir,
+          oksigen: keruhAir.oksigen,
+
         },
       });
     } catch (err) {

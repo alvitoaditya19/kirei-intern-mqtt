@@ -3,6 +3,9 @@
     <tr>
       <th>No.</th>
       <th>Kekeruhan Air</th>
+      <th>pH Air</th>
+      <th>Oksigen</th>
+
       <th>Time</th>
     </tr>
   </thead>
@@ -11,6 +14,8 @@
       <tr>
         <td><%= i + 1 %></td>
         <td><%= keruhAir[i].kekeruhanAir %></td>
+        <td><%= keruhAir[i].phAir %></td>
+        <td><%= keruhAir[i].oksigen %></td>
         <td><%= keruhAir[i].updatedAt %></td>
       </tr>
     <% } %>

@@ -1,5 +1,5 @@
 const Sensor = require("../db/Models/Sensor");
-const KeruhAir = require("../db/Models/KeruhAir");
+const KeruhAir = require("../db/Models/Air");
 const Lampu = require("../db/Models/Lampu");
 const OnOffManual = require("../db/Models/OnOffManual");
 const Pump = require("../db/Models/Pump");

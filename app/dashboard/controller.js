@@ -4,7 +4,7 @@ const Tanah = require("../../src/db/Models/Tanah");
 const OnOfManual = require("../../src/db/Models/OnOffManual");
 const Suhu = require("../../src/db/Models/Suhu");
 const WaterLevel = require("../../src/db/Models/Water");
-const TDSLevel = require("../../src/db/Models/KeruhAir");
+const TDSLevel = require("../../src/db/Models/Air");
 const Vegetable = require("../../src/db/Models/Setting");
 const Userr = require("../../src/db/Models/Userr");
 

@@ -2,8 +2,6 @@ var express = require("express");
 var router = express.Router();
 const { index, getTds, postTds, updateTds } = require("./controller");
 const { isLoginAdmin } = require('../middleware/auth');
-const multer = require("multer");
-const os = require("os");
 
 // PAGES
 router.get("/", isLoginAdmin,index);

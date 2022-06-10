@@ -3,15 +3,19 @@
     <tr>
       <th>No.</th>
       <th>Kelembapan Tanah</th>
+      <th>Nitrat Tanah</th>
+      <th>Kadar Tanah</th>
       <th>Time</th>
     </tr>
   </thead>
   <tbody>
-    <% for(let i = 0; i < kelembapanTanah.length; i++){ %>
+    <% for(let i = 0; i < tanah.length; i++){ %>
       <tr>
         <td><%= i + 1 %></td>
-        <td><%= kelembapanTanah[i].kelembapanTanah %> RH</td>
-        <td><%= kelembapanTanah[i].updatedAt %></td>
+        <td><%= tanah[i].kelembapanTanah %> RH</td>
+        <td><%= tanah[i].nitratTanah %></td>
+        <td><%= tanah[i].kadarTanah %></td>
+        <td><%= tanah[i].updatedAt %></td>
       </tr>
     <% } %>
   </tbody>

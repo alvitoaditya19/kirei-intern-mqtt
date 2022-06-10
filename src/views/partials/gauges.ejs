@@ -45,8 +45,6 @@
         $("#tanah").text(dataItem.data.slice(-1)[0].kelembapanTanah ?? "No Data");
         $("#nitratTanah").text(dataItem.data.slice(-1)[0].nitratTanah ?? "No Data");
         $("#kadarTanah").text(dataItem.data.slice(-1)[0].kadarTanah ?? "No Data");
-        $("#phTanah").text(dataItem.data.slice(-1)[0].phTanah ?? "No Data");
-
       },
     });
   }
@@ -73,6 +71,8 @@
       url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/keruhair/get",
       success: function (dataItem) {
         $("#kekeruhanAir").text(dataItem.data.slice(-1)[0].kekeruhanAir ?? "No Data");
+        $("#phAir").text(dataItem.data.slice(-1)[0].phAir ?? "No Data");
+        $("#oksigen").text(dataItem.data.slice(-1)[0].oksigen ?? "No Data");
       },
     });
   }
