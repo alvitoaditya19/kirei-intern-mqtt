@@ -3,19 +3,19 @@ const mongoose = require("mongoose");
 let tanahSchema = mongoose.Schema({
   kelembapanTanah: {
     type: String,
-    // require: [true, "Kelembapan Harus Diisi"],
+    require: [false, "kelembapanTanah Diisi"],
   },
   nitratTanah: {
     type: String,
-    // require: [true, "Kelembapan Harus Diisi"],
+    require: [false, "nitratTanah Diisi"],
   },
   kadarTanah: {
     type: String,
-    // require: [true, "Kelembapan Harus Diisi"],
+    require: [false, "kadarTanah Diisi"],
   },
   phTanah: {
     type: String,
-    // require: [true, "Kelembapan Harus Diisi"],
+    require: [false, "phTanah Diisi"],
   },
 },{ timestamps: true });
 
