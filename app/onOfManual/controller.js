@@ -54,7 +54,7 @@ module.exports = {
         {
           _id: id,
         },
-        { statusKontrol }
+        { statusKontrol:statusKontrol }
       );
 
       lampu = await Lampu.findOneAndUpdate(

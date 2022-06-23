@@ -10,7 +10,7 @@
         "Content-Type": "application/json",
       },
       dataType: "json",
-      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual/62452a1b53bd72eb5a176274",
       // url: "http://localhost:5000/api/v1/onOfManual/62452a1b53bd72eb5a176274",
 
       data: JSON.stringify({
@@ -49,11 +49,12 @@
         "Content-Type": "application/json",
       },
       dataType: "json",
-      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual/62452a1b53bd72eb5a176274",
       // url: "http://localhost:5000/api/v1/onOfManual/62452a1b53bd72eb5a176274",
 
       data: JSON.stringify({
-        statusKontrol: otomatisStatus == true ? "ON" : "OFF",
+        statusPump: otomatisStatus == true ? "OFF" : "ON",
+        statusLampu: otomatisStatus == true ? "OFF" : "ON",
       }),
       success: function (data) {
         $(".btn-status-otomatis-on").toggleClass("btn-status-otomatis-off");

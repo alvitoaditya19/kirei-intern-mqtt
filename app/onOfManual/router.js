@@ -4,7 +4,7 @@ const { actionCreate, getData,updateOtomatis } = require("./controller");
 
 router.get("/", getData);
 router.post("/", actionCreate);
-router.put("/", updateOtomatis);
+router.put("/:id", updateOtomatis);
 
 
 
