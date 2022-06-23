@@ -163,11 +163,6 @@ module.exports = {
           statusKontrol: onOfManual.statusKontrol
         },
       });
-
-      req.flash("alertMessage", "Berhasil Ubah Status");
-      req.flash("alertStatus", "success");
-
-      res.redirect("/dashboard");
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
