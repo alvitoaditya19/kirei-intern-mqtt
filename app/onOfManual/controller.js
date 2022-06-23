@@ -34,27 +34,27 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      let onOfManual = await OnOfManual.findOne({});
-      
+      let onOfManual = await OnOfManual.findOne({ _id: id });
+      let statusKontrol = onOfManual.statusKontrol === "ON" ? "OFF" : "ON";
+
       let lampu = await Lampu.findOne({}); //{ _id: "62414bbd1a431cac0b339833" }
       let pump = await Pump.findOne({}); //_id: "62430c4028e1eef562010284"
-      
+
       let lampuStatus = lampu.status === "ON" ? "OFF" : "ON";
-      
+
       let lampu1Status = lampu.lampu1;
       let lampu2Status = lampu.lampu2;
-      
+
       let pumpStatus = pump.status === "ON" ? "OFF" : "ON";
-      
+
       let pump1Status = pump.pump1;
       let pump2Status = pump.pump2;
-      
-      let statusKontrol = onOfManual.statusKontrol === "ON" ? "OFF" : "ON";
+
       onOfManual = await OnOfManual.findOneAndUpdate(
         {
           _id: id,
         },
-        { statusKontrol:statusKontrol }
+        { statusKontrol }
       );
 
       lampu = await Lampu.findOneAndUpdate(
@@ -126,21 +126,21 @@ module.exports = {
         //   console.log(`Subscribe to topic '${topic}'`)
         // }) 
 
-        client.publish(topicLamp, dataJsonOtomatis, { qos: 1, retain: true }, (error) => {
+        client.publish(topicOtomatis, dataJsonOtomatis, { qos: 1, retain: true }, (error) => {
           if (error) {
             console.error(error)
           }
 
         })
 
-        client.publish(topicPump, dataJsonLampu, { qos: 1, retain: true }, (error) => {
+        client.publish(topicLamp, dataJsonLampu, { qos: 1, retain: true }, (error) => {
           if (error) {
             console.error(error)
           }
 
         })
 
-        client.publish(topicOtomatis, dataJsonPump, { qos: 1, retain: true }, (error) => {
+        client.publish(topicPump, dataJsonPump, { qos: 1, retain: true }, (error) => {
        if (error) {
             console.error(error)
           }
