@@ -21,9 +21,9 @@
       success: function (data) {
         $(".btn-status-otomatis-off").toggleClass("btn-lamp-on");
         var x = document.getElementById("titlestatus");
-        if (data.data.statusPump === "OFF") {
+        if (data.data.statusKontrol === "OFF") {
           x.innerHTML = "OTOMATIS ON";
-        } else if  (data.data.statusPump === "ON") {
+        } else if  (data.data.statusKontrol === "ON") {
            x.innerHTML = "OTOMATIS OFF";
         } else{
           x.innerHTML = "NONE"
@@ -63,9 +63,9 @@
         $(".btn-status-otomatis-on").toggleClass("btn-status-otomatis-off");
         console.log(data)
         var x = document.getElementById("titlestatus");
-        if (data.data.statusPump === "OFF") {
+        if (data.data.statusKontrol === "OFF") {
           x.innerHTML = "OTOMATIS ON";
-        } else if  (data.data.statusPump === "ON") {
+        } else if  (data.data.statusKontrol === "ON") {
            x.innerHTML = "OTOMATIS OFF";
         } else{
           x.innerHTML = "NONE"
