@@ -136,14 +136,13 @@
                     Weather <br />Monitoring
                   </div>
                 </div>
-
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs text-gray-500 text-uppercase my-2">
-                      Total
+                      Current
                     </div>
                     <div class="h5 mb-0 font-weight-medium color-pallete1">
-                      Hujan
+                      Cerah
                     </div>
                   </div>
                 </div>
@@ -355,7 +354,7 @@
                 style="display: inline-block"
                 method="POST"
               >
-                <% if(onOfManual.statusKontrol === 'ON') { %>
+                <% if(onOfManual.statusKontrol === 'OFF') { %>
 
                 <button class="btn-lamp-off btn">
                   <img
@@ -369,7 +368,7 @@
                   <h1 class="title">OTOMATIS OFF</h1>
                 </button>
 
-                <% } else if(onOfManual.statusKontrol === 'OFF') { %>
+                <% } else if(onOfManual.statusKontrol === 'ON') { %>
 
                 <button class="btn-lamp-on btn">
                   <img
@@ -460,7 +459,6 @@
                 method="POST"
               >
                 <% if(pump.pump1 === 'OFF') { %>
-
                 <button class="btn-lamp-off btn">
                   <img
                     src="/images/icon-lamp2.svg"
@@ -485,9 +483,10 @@
                   />
                   <h1 class="title">Pump 1 ON</h1>
                 </button>
-
                 <% } %>
               </form>
+
+
               <form
                 action="/dashboard/pump2/62430c4028e1eef562010284?_method=PUT"
                 style="display: col-lg-6 col-12"
@@ -532,57 +531,117 @@
             <!-- AJAX -->
             <div class="mt-lg-3 mt-2">
               <div class="row">
-                <button class="btn-lamp-off-status btn" id="buttononoff">
+              <% if(lampu.status === 'OFF') { %>
+                <button class="btn-status-otomatis-off btn" id="buttononoff-off">
                   <img
-                    src="/images/icon-lamp2.svg"
+                  src="/images/icon-lamp2.svg"
+                  alt=""
+                  height="60"
+                  width="60"
+                  class="mb-2"
+                  id="imgstatus"
+                />
+                  <h1 class="title" id="titlestatus">OTOMATIS OFF</h1>
+                </button>
+              <% } else if(lampu.status === 'ON') { %>
+                <button class="btn-status-otomatis-on btn" id="buttononoff-on">
+                  <img
+                    src="/images/icon-lamp1.svg"
                     alt=""
                     height="60"
                     width="60"
                     class="mb-2"
                     id="imgstatus"
                   />
-                  <h1 class="title" id="titlestatus">Press IT<br>OTOMATIS</h1>
+                  <h1 class="title" id="titlestatus">OTOMATIS ON</h1>
                 </button>
+              <% } %>
               </div>
             </div>
             <div class="row mt-lg-3 mt-2">
-              <button class="btn-lamp-off-lampu1 btn" id="buttonlampu1">
-                <img
-                  src="/images/icon-lamp2.svg"
-                  alt=""
-                  height="60"
-                  width="60"
-                  class="mb-2"
-                  id="imgLampu1"
-                />
-                <h1 class="title" id="titleLampu1">Press IT<br>LAMPU 1</h1>
-              </button>
 
-              <button class="btn-lamp-off-lampu2 btn lampu2" id="buttonlampu2">
-                <img
-                  src="/images/icon-lamp2.svg"
-                  alt=""
-                  height="60"
-                  width="60"
-                  class="mb-2"
-                  id="imgLampu2"
-                />
-                <h1 class="title" id="titleLampu2">Press IT<br>Lampu 2</h1> 
-                <!-- Lampu 2 OFF -->
-              </button>
+              <% if(lampu.lampu1 === 'OFF') { %>
+                <button class="btn-lampu1-off btn" id="buttonlampu1off">
+                  <img
+                    src="/images/icon-lamp2.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                    id="imgLampu1"
+                  />
+                  <h1 class="title" id="titleLampu1">Lampu 1 OFF</h1>
+                </button>
+              <% } else if(lampu.lampu1 === 'ON') { %>
+                <button class="btn-lampu1-on btn" id="buttonlampu1on">
+                  <img
+                    src="/images/icon-lamp1.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                    id="imgLampu1"
+                  />
+                  <h1 class="title" id="titleLampu1">Lampu 1 ON</h1>
+                </button>
+              <% } %>
+              
+              <% if(lampu.lampu2 === 'OFF') { %>
+                <button class="btn-lamp-off-lampu2 btn lampu2" id="buttonlampu2">
+                  <img
+                    src="/images/icon-lamp2.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                    id="imgLampu2"
+                  />
+                  <h1 class="title" id="titleLampu2">Lampu 2 OFF</h1> 
+                  <!-- Lampu 2 OFF -->
+                </button>
+              <% } else if(lampu.lampu2 === 'ON') { %>
+                <button class="btn-lamp-on btn lampu2" id="buttonlampu2on">
+                  <img
+                    src="/images/icon-lamp1.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                    id="imgLampu2on"
+                  />
+                  <h1 class="title" id="titleLampu2on">Lampu 1 ON</h1> 
+                  <!-- Lampu 2 OFF -->
+                </button>
+              <% } %>
 
-              <button class="btn-lamp-off-pump1 btn" id="buttonpump1">
-                <img
-                  src="/images/icon-lamp2.svg"
+              <!-- PUMP -->
+              <% if(pump.pump1 === 'OFF') { %>
+                <button class="btn-pump1-off btn" id="buttonpump1off">
+                  <img
+                    src="/images/icon-lamp2.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                    id="imgPump1"
+                  />
+                  <h1 class="title" id="titlePump1">Pump 1 OFF</h1> 
+                </button>
+              <% } else if(pump.pump1 === 'ON') { %>
+                <button class="btn-pump1-on btn" id="buttonpump1on">
+                  <img
+                  src="/images/icon-lamp1.svg"
                   alt=""
                   height="60"
                   width="60"
                   class="mb-2"
                   id="imgPump1"
-                />
-                <h1 class="title" id="titlePump1">Press IT<br>Pump 1</h1> 
-              </button>
+                  />
+                  <h1 class="title" id="titlePump1">Pump 1 ON</h1> 
+                </button>
+              <% } %>
 
+              <% if(pump.pump1 === 'OFF') { %>
               <button class="btn-lamp-off-pump2 btn" id="buttonpump2">
                 <img
                   src="/images/icon-lamp2.svg"
@@ -592,9 +651,24 @@
                   class="mb-2"
                   id="imgPump2"
                 />
-                <h1 class="title" id="titlePump2">Press IT<br>Pump 2</h1> 
+                <h1 class="title" id="titlePump2">Pump 2 OFF</h1> 
                 <!-- Lampu 2 OFF -->
               </button>
+              <% } else if(pump.pump1 === 'ON') { %>
+                <button class="btn-lamp-off-pump2 btn" id="buttonpump2">
+                  <img
+                    src="/images/icon-lamp2.svg"
+                    alt=""
+                    height="60"
+                    width="60"
+                    class="mb-2"
+                    id="imgPump2"
+                  />
+                  <h1 class="title" id="titlePump2">Pump 2 OFF</h1> 
+                  <!-- Lampu 2 OFF -->
+                </button>
+              <% } %>
+
             </div>
 
             <!-- AKHIR AJAX -->
@@ -721,3 +795,4 @@
 <%- include('../../partials/graph_gauge.ejs') %> 
 <%- include('../../partials/gauges.ejs') %>
 <%- include('../../partials/graph.ejs') %>
+

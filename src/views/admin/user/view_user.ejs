@@ -114,5 +114,23 @@
 </div>
 
 <%- include('../../partials/js.ejs') %>
+<script>
+  $(function() {
+    $('.toggle-class').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: 'https://kirei-intern-mqtt.herokuapp.com/api/v1/user/get',
+            data: {'status': status, 'id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+</script>
 <%- include('../../partials/gauges.ejs') %>
 

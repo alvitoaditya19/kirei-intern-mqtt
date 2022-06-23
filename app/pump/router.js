@@ -1,8 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const {pumpAPI,index, updatePump, actionStatusLampu2, actionStatusLampu1, actionCreate } = require("./controller");
-const multer = require("multer");
-const os = require("os");
+const {pumpAPI, updatePump, actionCreate } = require("./controller");
+
 
 router.get("/", pumpAPI);
 router.put("/:id", updatePump);

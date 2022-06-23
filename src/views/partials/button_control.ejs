@@ -3,8 +3,44 @@
   var pumpStatus = false;
   var otomatisStatus = false;
 
+  $("#buttononoff-off").click(function () {
+    $.ajax({
+      type: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      dataType: "json",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual/62452a1b53bd72eb5a176274",
+      data: JSON.stringify({
+        statusPump: otomatisStatus == true ? "OFF" : "ON",
+        statusLampu: otomatisStatus == true ? "OFF" : "ON",
+      }),
+      success: function (data) {
+        $(".btn-status-otomatis-off").toggleClass("btn-lamp-on");
+        var x = document.getElementById("titlestatus");
+        if (data.data.statusPump === "OFF") {
+          x.innerHTML = "OTOMATIS ON";
+        } else if  (data.data.statusPump === "ON") {
+           x.innerHTML = "OTOMATIS OFF";
+        } else{
+          x.innerHTML = "NONE"
+        }
+        var img = document.getElementById('imgstatus').src;
+        if (img.indexOf('icon-lamp2.svg')!=-1) {
+            document.getElementById('imgstatus').src  = '/images/icon-lamp1.svg';
+        }
+         else {
+           document.getElementById('imgstatus').src = '/images/icon-lamp2.svg';
+       }
+       otomatisStatus = !otomatisStatus;
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  })
 
-  $("#buttononoff").click(function () {
+  $("#buttononoff-on").click(function () {
     $.ajax({
       type: "PUT",
       headers: {
@@ -16,12 +52,12 @@
         statusKontrol: otomatisStatus == true ? "ON" : "OFF",
       }),
       success: function (data) {
-        $(".btn-lamp-off-status").toggleClass("btn-lamp-on");
+        $(".btn-status-otomatis-on").toggleClass("btn-status-otomatis-off");
         console.log(data)
         var x = document.getElementById("titlestatus");
-        if (data.data.statusKontrol === "ON") {
+        if (data.data.statusPump === "OFF") {
           x.innerHTML = "OTOMATIS ON";
-        } else if  (data.data.statusKontrol === "OFF") {
+        } else if  (data.data.statusPump === "ON") {
            x.innerHTML = "OTOMATIS OFF";
         } else{
           x.innerHTML = "NONE"
@@ -42,29 +78,25 @@
   })
 
 
-  $("#buttonlampu1").click(function () {
+  $("#buttonlampu1off").click(function () {
     $.ajax({
       type: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       dataType: "json",
-      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/lampu/62414bbd1a431cac0b339833",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/lampu/button/lampu1/62414bbd1a431cac0b339833",
       data: JSON.stringify({
-        lampu1: lampuStatus == true ? "ON" : "OFF",
+        lampu1: lampuStatus == true ? "OFF" : "ON",
       }),
       success: function (data) {
-        var element1 = document.getElementById("buttonlampu1");
-        element1.classList.toggle("btn-lamp-on-lampu1");
-      
-        var element2 = document.getElementById("buttonlampu1");
-        element2.classList.toggle("btn-lamp-off-lampu1");
+        $(".btn-lampu1-off").toggleClass("btn-lampu1-on-im");
 
         var x = document.getElementById("titleLampu1");
 
-        if (data.data.lampu1 === "ON") {
+        if (data.data.lampu1 === "OFF") {
           x.innerHTML = "Lampu 1 ON";
-        } else if  (data.data.lampu1 === "OFF") {
+        } else if  (data.data.lampu1 === "ON") {
            x.innerHTML = "Lampu 1 OFF";
         } else{
           x.innerHTML = "NONE"
@@ -85,7 +117,48 @@
       },
     });
   })
-  $("#buttonlampu2").click(function () {
+  $("#buttonlampu1on").click(function () {
+    $.ajax({
+      type: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      dataType: "json",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/lampu/button/lampu1/62414bbd1a431cac0b339833",
+      data: JSON.stringify({
+        lampu1: lampuStatus == true ? "ON" : "OFF",
+      }),
+      success: function (data) {
+        $(".btn-lampu1-on").toggleClass("btn-lampu1-off");
+
+        var x = document.getElementById("titleLampu1");
+
+        if (data.data.lampu1 === "OFF") {
+          x.innerHTML = "Lampu 1 ON";
+        } else if  (data.data.lampu1 === "ON") {
+           x.innerHTML = "Lampu 1 OFF";
+        } else{
+          x.innerHTML = "NONE"
+        }
+        
+        var img = document.getElementById('imgLampu1').src;
+        if (img.indexOf('icon-lamp2.svg')!=-1) {
+            document.getElementById('imgLampu1').src  = '/images/icon-lamp1.svg';
+        }
+         else {
+           document.getElementById('imgLampu1').src = '/images/icon-lamp2.svg';
+       }
+
+       lampuStatus = !lampuStatus;
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  })
+
+  $("#buttonlampu2on").click(function () {
+    var statusActive = $(this).prop('btn-lamp-off-lampu2') == true ? "ON" : "OFF"; 
     $.ajax({
       type: "PUT",
       headers: {
@@ -94,11 +167,11 @@
       dataType: "json",
       url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/lampu/button/lampu2/62414bbd1a431cac0b339833",
       data: JSON.stringify({
-        lampu2: lampuStatus == true ? "ON" : "OFF",
+        lampu2: statusActive,
       }),
       success: function (data) {
-        $(".btn-lamp-off-lampu2").toggleClass("btn-lamp-on");
-        var x = document.getElementById("titleLampu2");
+        $(".btn-lamp-off-lampu2").toggleClass("btn-lamp-off");
+        var x = document.getElementById("titleLampu2on");
         if (data.data.lampu2 === "ON") {
           x.innerHTML = "Lampu 2 ON";
         } else if  (data.data.lampu2 === "OFF") {
@@ -106,7 +179,7 @@
         } else{
           x.innerHTML = "NONE"
         }
-        var img = document.getElementById('imgLampu2').src;
+        var img = document.getElementById('imgLampu2on').src;
         if (img.indexOf('icon-lamp2.svg')!=-1) {
             document.getElementById('imgLampu2').src  = '/images/icon-lamp1.svg';
         }
@@ -120,7 +193,8 @@
       },
     });
   })
-  $("#buttonpump1").click(function () {
+  
+  $("#buttonpump1off").click(function () {
     $.ajax({
       type: "PUT",
       headers: {
@@ -129,14 +203,14 @@
       dataType: "json",
       url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/pump/62430c4028e1eef562010284",
       data: JSON.stringify({
-        pump1: pumpStatus == true ? "ON" : "OFF",
+        pump1: pumpStatus == true ? "OFF" : "ON",
       }),
       success: function (data) {
-        $(".btn-lamp-off-pump1").toggleClass("btn-lamp-on");
+        $(".btn-pump1-off").toggleClass("btn-pump1-on-im");
         var x = document.getElementById("titlePump1");
-        if (data.data.pump1 === "ON") {
+        if (data.data.pump1 === "OFF") {
           x.innerHTML = "Pump 1 ON";
-        } else if  (data.data.pump1 === "OFF") {
+        } else if  (data.data.pump1 === "ON") {
            x.innerHTML = "Pump 1 OFF";
         } else{
           x.innerHTML = "NONE"
@@ -155,6 +229,45 @@
       },
     });
   })
+  $("#buttonpump1on").click(function () {
+    $.ajax({
+      type: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      dataType: "json",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/pump/62430c4028e1eef562010284",
+      data: JSON.stringify({
+        pump1: pumpStatus == true ? "ON" : "OFF",
+      }),
+      success: function (data) {
+        $(".btn-pump1-on").toggleClass("btn-pump1-off");
+
+        var x = document.getElementById("titlePump1");
+
+        if (data.data.pump1 === "OFF") {
+          x.innerHTML = "Pump 1 OFF";
+        } else if  (data.data.pump1 === "ON") {
+           x.innerHTML = "Pump 1 OFF";
+        } else{
+          x.innerHTML = "NONE"
+        }
+        
+        var img = document.getElementById('imgPump1').src;
+        if (img.indexOf('icon-lamp2.svg')!=-1) {
+            document.getElementById('imgPump1').src  = '/images/icon-lamp1.svg';
+        }
+         else {
+           document.getElementById('imgPump1').src = '/images/icon-lamp2.svg';
+       }
+
+       pumpStatus = !pumpStatus;
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+ })
   $("#buttonpump2").click(function () {
     $.ajax({
       type: "PUT",

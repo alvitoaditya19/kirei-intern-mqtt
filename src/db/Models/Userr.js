@@ -17,6 +17,11 @@ const userSchema = mongoose.Schema({
     type: String,
     require: [true, "Nama Password Harus Diisi"],
   },
+  status:{
+    type: Boolean,
+    require:[true, "Status harus diisi"],
+    default:true
+  }
 },{ timestamps: true });
 
 module.exports = mongoose.model("Userr", userSchema);

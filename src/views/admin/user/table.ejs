@@ -4,6 +4,8 @@
       <th>No.</th>
       <th>Name</th>
       <th>Email</th>
+      <th>Status</th>
+
       <th>Username</th>
       <th>Aksi</th>
     </tr>
@@ -15,6 +17,9 @@
       <td><%= user[i].name %></td>
       <td><%= user[i].email %></td>
       <td><%= user[i].username %></td>
+      <td>
+        <input data-id="<%= user[i].id %>" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" <%= user[i].status ? 'checked' : '' %>>
+      </td>
       <td>
         <form
           action="/user/delete/<%= user[i]._id %>?_method=DELETE"

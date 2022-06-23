@@ -84,6 +84,8 @@ app.use("/keruhair", keruhRouter);
 // API
 // app.use(`${URL}/players`, playerRouter);
 app.use(`${URL}/auth`, authRouter);
+app.use(`${URL}/user`, userRouter);
+
 app.use(`${URL}/suhu`, suhuRouter);
 app.use(`${URL}/lampu`, lampuRouter);
 app.use(`${URL}/tanah`, tanahRouter);

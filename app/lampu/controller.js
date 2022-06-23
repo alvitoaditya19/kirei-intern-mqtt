@@ -247,7 +247,7 @@ module.exports = {
 
       pump = await Pump.findOneAndUpdate(
         {
-          _id: "62430c4028e1eef562010284",
+          _id: id,
         },
         { 
           // status: pumpStatus,
@@ -316,7 +316,7 @@ module.exports = {
       res.status(201).json({
         data: {
           id: lampu.id,
-          lampu2: lampu.lampu1,
+          lampu2: lampu.lampu2,
         },
       });
   }

@@ -7,12 +7,14 @@ var {
   viewEdit,
   actionEdit,
   actionDelete,
+  getUser,
+  // postUser
 } = require("./controller");
 
-const { isLoginAdmin } = require("../middleware/auth");
+// const { isLoginAdmin } = require("../middleware/auth");
 
 /* GET home page. */
-router.use(isLoginAdmin);
+// router.use(isLoginAdmin);
 
 /* GET home page. */
 router.get("/", index);
@@ -21,5 +23,9 @@ router.post("/create", actionCreate);
 router.get("/edit/:id", viewEdit);
 router.put("/edit/:id", actionEdit);
 router.delete("/delete/:id", actionDelete);
+
+router.get("/get", getUser);
+// router.get("/post", postUser);
+
 
 module.exports = router;

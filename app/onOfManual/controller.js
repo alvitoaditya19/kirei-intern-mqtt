@@ -32,12 +32,11 @@ module.exports = {
   },
   updateOtomatis: async (req, res, next) => {
     try {
-      const {id} = req.params
-      const { statusKontrol = "" } = req.body;
+      const { id } = req.params;
 
-      const payload = {};
+      let onOfManual = await OnOfManual.findOne({ _id: id });
+      let statusKontrol = onOfManual.statusKontrol === "ON" ? "OFF" : "ON";
 
-      if (statusKontrol.length) payload.statusKontrol = statusKontrol;
       let lampu = await Lampu.findOne({}); //{ _id: "62414bbd1a431cac0b339833" }
       let pump = await Pump.findOne({}); //_id: "62430c4028e1eef562010284"
 
@@ -51,12 +50,11 @@ module.exports = {
       let pump1Status = pump.pump1;
       let pump2Status = pump.pump2;
 
-      const status = await OnOfManual.findOneAndUpdate(
+      onOfManual = await OnOfManual.findOneAndUpdate(
         {
           _id: id,
         },
-        payload,
-        { new: true, runValidators: true }
+        { statusKontrol }
       );
 
       lampu = await Lampu.findOneAndUpdate(
@@ -140,12 +138,24 @@ module.exports = {
 
       res.status(201).json({
         data: {
-          id: status.id,
-          statusKontrol: status.statusKontrol
+          id: lampu.id,
+          lampu1: lampu.lampu1,
+          lampu2: lampu.lampu2,
+          pump1: lampu.pump1,
+          pump2: lampu.pump2,
+          statusPump: pump.status,
+          statusLampu: lampu.status,
         },
       });
+
+      req.flash("alertMessage", "Berhasil Ubah Status");
+      req.flash("alertStatus", "success");
+
+      res.redirect("/dashboard");
     } catch (err) {
-      res.status(500).json({ message: err.message || `Internal Server Error` });
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/dashboard");
     }
   },
 };

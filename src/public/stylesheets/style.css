@@ -216,6 +216,154 @@ body {
   color: #097eeb;
 }
 
+/* ON OF BUTTON */
+.btn-status-otomatis-on {
+  max-height: 150px;
+  background-color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-status-otomatis-on h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffff;
+}
+
+.btn-status-otomatis-off {
+  max-height: 150px;
+  background-color: #fff ;
+  color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-status-otomatis-off h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #097eeb;
+}
+
+.btn-status-otomatis-on-im{
+  max-height: 150px;
+  background-color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-status-otomatis-on-im h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffff;
+}
+
+/* LAMPU */
+.btn-lampu1-on{
+  max-height: 150px;
+  background-color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lampu1-on h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffff;
+}
+
+.btn-lampu1-off {
+  max-height: 150px;
+  background-color: #fff ;
+  color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lampu1-off h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #097eeb;
+}
+
+.btn-lampu1-on-im{
+  max-height: 150px;
+  background-color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-lampu1-on-im h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffff;
+}
+
+
+/* PUMP */
+.btn-pump1-on{
+  max-height: 150px;
+  background-color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-pump1-on h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffff;
+}
+
+.btn-pump1-off {
+  max-height: 150px;
+  background-color: #fff ;
+  color: #097eeb;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-pump1-off h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #097eeb;
+}
+
+.btn-pump1-on-im{
+  max-height: 150px;
+  background-color: #097eeb !important;
+  border-radius: 20px;
+  padding: 10px;
+  margin:0px 6px;
+  padding:20px 20px;
+}
+
+.btn-pump1-on-im h1 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffff !important;
+}
+
 
 .card-graph{
   border-radius:10px

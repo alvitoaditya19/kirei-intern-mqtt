@@ -36,6 +36,7 @@ module.exports = {
       res.redirect("/user");
     }
   },
+  
 
   actionCreate: async (req, res) => {
     try {
@@ -113,4 +114,15 @@ module.exports = {
       res.redirect("/user");
     }
   },
+  getUser: async(req, res)=>{
+    try {
+      const user = await User.find().select('_id status updatedAt');
+
+      res.status(200).json({data: user});
+    } catch (err) {
+      res.status(500).json({message: err.message || `Internal Server Error`})
+    }
+  },
+
+  
 };
