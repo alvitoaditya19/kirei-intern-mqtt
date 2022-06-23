@@ -10,7 +10,9 @@
         "Content-Type": "application/json",
       },
       dataType: "json",
-      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual/62452a1b53bd72eb5a176274",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual",
+      // url: "http://localhost:5000/api/v1/onOfManual/62452a1b53bd72eb5a176274",
+
       data: JSON.stringify({
         statusPump: otomatisStatus == true ? "OFF" : "ON",
         statusLampu: otomatisStatus == true ? "OFF" : "ON",
@@ -47,7 +49,9 @@
         "Content-Type": "application/json",
       },
       dataType: "json",
-      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual/62452a1b53bd72eb5a176274",
+      url: "https://kirei-intern-mqtt.herokuapp.com/api/v1/onOfManual",
+      // url: "http://localhost:5000/api/v1/onOfManual/62452a1b53bd72eb5a176274",
+
       data: JSON.stringify({
         statusKontrol: otomatisStatus == true ? "ON" : "OFF",
       }),
