@@ -14,6 +14,7 @@
       // url: "http://localhost:5000/api/v1/onOfManual/62452a1b53bd72eb5a176274",
 
       data: JSON.stringify({
+        statusKontrol:otomatisStatus == true ? "OFF" : "ON",
         statusPump: otomatisStatus == true ? "OFF" : "ON",
         statusLampu: otomatisStatus == true ? "OFF" : "ON",
       }),
@@ -53,8 +54,10 @@
       // url: "http://localhost:5000/api/v1/onOfManual/62452a1b53bd72eb5a176274",
 
       data: JSON.stringify({
-        statusPump: otomatisStatus == true ? "OFF" : "ON",
-        statusLampu: otomatisStatus == true ? "OFF" : "ON",
+        statusKontrol:otomatisStatus == true ? "ON" : "OFF",
+
+        statusPump: otomatisStatus == true ? "ON" : "OFF",
+        statusLampu: otomatisStatus == true ? "ON" : "OFF",
       }),
       success: function (data) {
         $(".btn-status-otomatis-on").toggleClass("btn-status-otomatis-off");

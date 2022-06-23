@@ -531,7 +531,7 @@
             <!-- AJAX -->
             <div class="mt-lg-3 mt-2">
               <div class="row">
-              <% if(lampu.status === 'OFF') { %>
+              <% if(onOfManual.statusKontrol === 'OFF') { %>
                 <button class="btn-status-otomatis-off btn" id="buttononoff-off">
                   <img
                   src="/images/icon-lamp2.svg"
@@ -543,7 +543,7 @@
                 />
                   <h1 class="title" id="titlestatus">OTOMATIS OFF</h1>
                 </button>
-              <% } else if(lampu.status === 'ON') { %>
+              <% } else if(onOfManual.statusKontrol === 'ON') { %>
                 <button class="btn-status-otomatis-on btn" id="buttononoff-on">
                   <img
                     src="/images/icon-lamp1.svg"
