@@ -89,6 +89,8 @@ module.exports = {
 
       const topicLamp = 'intern-KIREI/IOT/Lampu'
       const topicPump = 'intern-KIREI/IOT/Pump'
+      const topicOtomatis = 'intern-KIREI/IOT/Otomatis'
+
 
       const payloadLampu = {
         lampu1: lampu1Status,
@@ -101,8 +103,14 @@ module.exports = {
         pump2: pump2Status
       }
 
+      const payloadOtomatis = {
+        statusKontrol: statusKontrol,
+      }
+
       const dataJsonLampu = await JSON.stringify(payloadLampu)
       const dataJsonPump = await JSON.stringify(payloadPump)
+      const dataJsonOtomatis = await JSON.stringify(payloadOtomatis)
+
 
       const client = mqtt.connect(connectUrl, {
         clientId,
@@ -118,14 +126,21 @@ module.exports = {
         //   console.log(`Subscribe to topic '${topic}'`)
         // }) 
 
-        client.publish(topicLamp, dataJsonLampu, { qos: 1, retain: true }, (error) => {
+        client.publish(topicLamp, dataJsonOtomatis, { qos: 1, retain: true }, (error) => {
           if (error) {
             console.error(error)
           }
 
         })
 
-        client.publish(topicPump, dataJsonPump, { qos: 1, retain: true }, (error) => {
+        client.publish(topicPump, dataJsonLampu, { qos: 1, retain: true }, (error) => {
+          if (error) {
+            console.error(error)
+          }
+
+        })
+
+        client.publish(topicOtomatis, dataJsonPump, { qos: 1, retain: true }, (error) => {
        if (error) {
             console.error(error)
           }
