@@ -29,13 +29,9 @@ const tanahRouter = require("../app/tanah/router");
 
 const pumpRouter = require("../app/pump/router");
 
-
-
-
 const app = express();
 const URL = `/api/v1`;
 app.use(cors())
-
 
 // view engine setup
 app.set('views', path.join(__dirname, "views"));
@@ -67,7 +63,6 @@ app.use('/sb-admin-2', express.static(path.join(__dirname, '../node_modules/star
 route(app)
 
 // AKHIR MQTT
-
 app.use("/", adminRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/lampu", lampuRouter);

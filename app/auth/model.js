@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
+// const multer = require("multer")
 
 const bcrypt = require('bcryptjs')
 
 const HASH_ROUND = 10
 
-let adminSchema = mongoose.Schema({
+let userSchema = mongoose.Schema({
   email: {
     type: String,
-    require: [true, "Email Pembayaran Harus Diisi"],
+    require: [true, "Email Harus Diisi"],
   },
   name: {
     type: String,
@@ -26,37 +27,44 @@ let adminSchema = mongoose.Schema({
     require: [true, "Kata Sandi Harus Diisi"],
     maxlength: [225, "panjang password harus antara 3-225 karakter"],
   },
-  avatar:{
+  role: {
     type: String,
+    enum: ["admin", "user"],
+    default: "user",
   },
-  // status: {
-  //   type: String,
-  //   enum: ["admin", "user"],
-  //   default: "admin",
-  // },
   status: {
     type: String,
     enum: ["Y", "N"],
     default: "Y",
   },
+  avatar:{
+    type: String,
+  },
+  fileName : {type:String},
   phoneNumber: {
     type: String,
     require: [true, "Nomor Telepon Harus Diisi"],
+    maxlength: [13, "panjang nomor handphobe harus antara 9-13 karakter"],
+    minlength: [9, "panjang nomor handphobe harus antara 9-13 karakter"],
+  },
+  favorit: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
   },
 },{ timestamps: true });
 
-adminSchema.path('email').validate(async function (value){
+userSchema.path('email').validate(async function (value){
   try {
-    const count = await this.model('Player').countDocuments({ email : value })
+    const count = await this.model('User').countDocuments({ email : value })
     return !count;
   } catch (err) {
     throw err
   }
 }, attr => `${attr.value} sudah terdaftar`)
 
-adminSchema.pre('save', function (next){
+userSchema.pre('save', function (next){
   this.password = bcrypt.hashSync(this.password, HASH_ROUND)
   next()
 })
 
-module.exports = mongoose.model("Admin", adminSchema);
+module.exports = mongoose.model("User", userSchema);

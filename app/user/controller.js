@@ -1,5 +1,5 @@
 
-const User = require("../../src/db/Models/Userr");
+const User = require("../../app/auth/model");
 
 module.exports = {
   index: async (req, res) => {
@@ -116,7 +116,7 @@ module.exports = {
   },
   getUser: async(req, res)=>{
     try {
-      const user = await User.find().select('_id status updatedAt');
+      const user = await User.find();
 
       res.status(200).json({data: user});
     } catch (err) {

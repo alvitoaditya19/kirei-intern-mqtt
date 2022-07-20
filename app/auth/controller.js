@@ -1,11 +1,11 @@
-const Player = require('../admin/model');
+/* eslint-disable no-unused-vars */
+const User = require('./model');
 const path = require("path");
 const fs = require("fs");
 const config = require("../../config");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { jwtKey } = require('../../config');
-
 
 module.exports = {
   signup : async (req, res, next) => {
@@ -31,14 +31,14 @@ module.exports = {
 
         src.on("end", async () => {
           try {
-            const player = new Player({ ...payload, avatar: filename });
+            const user = new User({ ...payload, avatar: filename });
 
-            await player.save();
+            await user.save();
 
             
-            delete player._doc.password
+            delete user._doc.password
 
-            res.status(201).json({ data : player })
+            res.status(201).json({ data : user })
 
           } catch (err) {
             if(err && err.name === "ValidationError"){
@@ -52,13 +52,13 @@ module.exports = {
           }
         });
       }else{
-        let player = new Player(payload)
+        let user = new User(payload)
 
-        await player.save()
+        await user.save()
 
-        delete player._doc.password
+        delete user._doc.password
 
-        res.status(201).json({ data : player })
+        res.status(201).json({ data : user })
       }
 
     } catch (err) {
@@ -76,18 +76,19 @@ module.exports = {
   signin : (req, res) => {
     const { email, password } = req.body
 
-    Player.findOne({ email : email }).then((player) => {
-      if(player){
-        const checkPassword = bcrypt.compareSync(password, player.password)
+    User.findOne({ email : email }).then((user) => {
+      if(user){
+        const checkPassword = bcrypt.compareSync(password, user.password)
         if(checkPassword){
           const token = jwt.sign({
-            player : {
-              id: player.id,
-              username: player.username,
-              email: player.email,
-              nama : player.nama,
-              phoneNumber : player.phoneNumber,
-              avatar: player.avatar,
+            user : {
+              id: user.id,
+              username: user.username,
+              email: user.email,
+              name : user.name,
+              role: user.role,
+              phoneNumber : user.phoneNumber,
+              avatar: user.avatar ?? "Image Not Found",
             }
           }, config.jwtKey)
 
