@@ -1,4 +1,5 @@
 const Tanah = require("../../src/db/Models/Tanah");
+const  { Parser } = require('json2csv');
 
 module.exports = {
   index: async (req, res) => {
@@ -78,5 +79,20 @@ module.exports = {
     } catch (err) {
       res.status(500).json({message: err.message || `Internal Server Error`});
     }
+  },
+  actionConvertCSV:async(req,res) => {
+    const kelembapanTanah = await Tanah.find().select('_id kelembapanTanah kadarTanah nitratTanah createdAt updatedAt');
+    console.log(kelembapanTanah);
+
+    const fields = ['_id', 'kelembapanTanah','kadarTanah', 'nitratTanah' ,'createdAt', 'updatedAt'];
+    
+    const json2csvParser = new Parser({ fields });
+    const csv = json2csvParser.parse(kelembapanTanah);
+    
+    console.log(csv);
+
+    res.header('Content-Type', 'text/csv');
+    res.attachment('data-tanah.csv');
+    return res.send(csv);
   },
 };

@@ -1,4 +1,5 @@
 const WaterLevel = require("../../src/db/Models/Water");
+const  { Parser } = require('json2csv');
 
 module.exports = {
   index: async (req, res) => {
@@ -68,5 +69,24 @@ module.exports = {
     } catch (err) {
       res.status(500).json({message: err.message || `Internal Server Error`});
     }
+  },
+  actionConvertCSV:async(req,res) => {
+    const waterLevel = await WaterLevel.find().select('waterlevel createdAt updatedAt');
+    console.log(waterLevel.length);
+    let resultsArray = [];
+    for (let i=0; i < waterLevel.length; i++){
+      resultsArray.push(i);
+    }
+
+    const fields = ['_id','waterlevel', 'createdAt', 'updatedAt'];
+    
+    const json2csvParser = new Parser({ fields });
+    const csv = json2csvParser.parse(waterLevel);
+    
+    console.log(csv);
+
+    res.header('Content-Type', 'text/csv');
+    res.attachment('data-ketinggian-air.csv');
+    return res.send(csv);
   },
 };

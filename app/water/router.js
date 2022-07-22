@@ -1,12 +1,10 @@
 var express = require("express");
 var router = express.Router();
-const { getData, postData, updateData, index } = require("./controller");
+const { getData, postData, updateData, index, actionConvertCSV } = require("./controller");
 const { isLoginAdmin } = require('../middleware/auth');
-const multer = require("multer");
-const os = require("os");
-
 // PAGES
 router.get("/", isLoginAdmin,index);
+router.get("/csv", actionConvertCSV);
 
 //API
 router.get("/get", getData);

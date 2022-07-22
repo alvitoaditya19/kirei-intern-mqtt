@@ -6,7 +6,9 @@ const Suhu = require("../../src/db/Models/Suhu");
 const WaterLevel = require("../../src/db/Models/Water");
 const TDSLevel = require("../../src/db/Models/Air");
 const Vegetable = require("../../src/db/Models/Setting");
-const Userr = require("../../src/db/Models/Userr");
+const User = require("../auth/model");
+const Admin = require("..//admin/model");
+
 
 module.exports = {
   index: async (req, res) => {
@@ -20,7 +22,7 @@ module.exports = {
       const tdsLevel = await TDSLevel.find().sort({created_at: -1}).limit(1);
       const vegetable1 = await Vegetable.findById("62772ed88e95ab077ed764a3");
       const vegetable2 = await Vegetable.findById("62787d4f9f1c9d93d46815cd");
-      const user = await Userr.countDocuments();
+      const user = await User.countDocuments();
       
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -28,7 +30,7 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
 
       res.render("admin/dashboard/view_dashboard",{
-        name : req.session.admin.name,
+        name : req.session.admin.name || req.session.user.name,
         title: "Halaman Dashboard",
         count: {
           user

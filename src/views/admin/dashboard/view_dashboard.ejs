@@ -354,7 +354,7 @@
                 style="display: inline-block"
                 method="POST"
               >
-                <% if(onOfManual.statusKontrol === 'OFF') { %>
+                <% if(onOfManual.statusKontrol === 'ON') { %>
 
                 <button class="btn-lamp-off btn">
                   <img
@@ -368,7 +368,7 @@
                   <h1 class="title">OTOMATIS OFF</h1>
                 </button>
 
-                <% } else if(onOfManual.statusKontrol === 'ON') { %>
+                <% } else if(onOfManual.statusKontrol === 'OFF') { %>
 
                 <button class="btn-lamp-on btn">
                   <img
@@ -531,7 +531,7 @@
             <!-- AJAX -->
             <div class="mt-lg-3 mt-2">
               <div class="row">
-              <% if(onOfManual.statusKontrol === 'OFF') { %>
+              <% if(onOfManual.statusKontrol === 'ON') { %>
                 <button class="btn-status-otomatis-off btn" id="buttononoff-off">
                   <img
                   src="/images/icon-lamp2.svg"
@@ -543,7 +543,7 @@
                 />
                   <h1 class="title" id="titlestatus">OTOMATIS OFF</h1>
                 </button>
-              <% } else if(onOfManual.statusKontrol === 'ON') { %>
+              <% } else if(onOfManual.statusKontrol === 'OFF') { %>
                 <button class="btn-status-otomatis-on btn" id="buttononoff-on">
                   <img
                     src="/images/icon-lamp1.svg"
@@ -679,7 +679,8 @@
             <h1 class="title-monitoring">Grafik Data Realtime</h1>
           </div>
         </div>
-        <div class="container-fluid pb-lg-4 pb-3">
+        <!-- GRAFIK 1 -->
+        <!-- <div class="container-fluid pb-lg-4 pb-3">
           <div class="col-lg-12 bg-white p-lg-5 p-3 card-graph">
             <div class="chartCard">
               <div class="chartBox">
@@ -699,7 +700,8 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
+
         <div class="container-fluid pb-lg-5 pb-4">
           <div class="col-lg-12 bg-white p-lg-5 p-3 card-graph">
             <h4 class="text-center">Data Suhu Celcius dan Kelembapan Udara</h4>

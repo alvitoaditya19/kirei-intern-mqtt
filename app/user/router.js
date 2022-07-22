@@ -8,6 +8,7 @@ var {
   actionEdit,
   actionDelete,
   getUser,
+  actionConvertCSV,
   // postUser
 } = require("./controller");
 
@@ -23,6 +24,8 @@ router.post("/create", actionCreate);
 router.get("/edit/:id", viewEdit);
 router.put("/edit/:id", actionEdit);
 router.delete("/delete/:id", actionDelete);
+router.get("/csv", actionConvertCSV);
+
 
 router.get("/get", getUser);
 // router.get("/post", postUser);

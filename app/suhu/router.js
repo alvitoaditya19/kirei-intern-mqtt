@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { index, updateSuhu, getSuhu, postSuhu } = require("./controller");
+const { index, updateSuhu, getSuhu, postSuhu, actionConvertCSV } = require("./controller");
 const { isLoginAdmin } = require('../middleware/auth');
 const multer = require("multer");
 const os = require("os");
@@ -12,6 +12,8 @@ router.get("/",isLoginAdmin, index);
 router.get("/get", getSuhu);
 router.post("/post", postSuhu);
 router.put("/put", updateSuhu);
+router.get("/csv", actionConvertCSV);
+
 
 module.exports = router;
  

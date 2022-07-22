@@ -1,4 +1,6 @@
 const Admin = require("./model");
+const User = require("../auth/model");
+
 const bcrypt = require("bcryptjs");
 
 module.exports = {
@@ -27,7 +29,7 @@ module.exports = {
   actionSignin: async (req, res) => {
     try {
       const { email, password } = req.body;
-      const check = await Admin.findOne({ email: email });
+      const check = await Admin.findOne({ email: email }) || await User.findOne({ email: email });
 
       if (check) {
         if (check.status === "Y") {

@@ -1,4 +1,5 @@
 const Suhu = require("../../src/db/Models/Suhu");
+const  { Parser } = require('json2csv');
 
 module.exports = {
   index: async (req, res) => {
@@ -97,5 +98,19 @@ module.exports = {
     } catch (err) {
       res.status(500).json({ message: err.message || `Internal Server Error` });
     }
+  },
+  actionConvertCSV:async(req,res) => {
+    const suhu = await Suhu.find().select('celcius humidity humidity createdAt updatedAt');
+
+    const fields = ['celcius', 'humidity', 'humidity', 'createdAt','updatedAt'];
+    
+    const json2csvParser = new Parser({ fields });
+    const csv = json2csvParser.parse(suhu);
+    
+    console.log(csv);
+
+    res.header('Content-Type', 'text/csv');
+    res.attachment('data-suhu.csv');
+    return res.send(csv);
   },
 };
