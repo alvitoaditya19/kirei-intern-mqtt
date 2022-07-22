@@ -135,8 +135,19 @@ module.exports = {
     try {
       const user = await User.find();
 
-      res.status(200).json(user);
-    } catch (err) {
+      const userData = user.map((userDataMap) => {
+        const userCalender = new Date(userDataMap.createdAt)
+        return {
+          name:userDataMap.name,
+          username:userDataMap.username,
+          email:userDataMap.email,
+
+          tes:userCalender.getDate()
+        }
+      })
+
+      res.status(200).json(userData);
+    } catch (eSrr) {
       res.status(500).json({message: err.message || `Internal Server Error`})
     }
   },

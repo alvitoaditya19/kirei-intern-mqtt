@@ -38,7 +38,7 @@ client.on('message',(topic,payload) => {
     }else if(topic === 'intern-KIREI/IOT/Pump'){
         // storeDataLampu(payload)
         getDataPump(payload)
-    }else if(topic === 'intern-KIREI/IOT/Tanah'){
+    }else if(topic === 'intern-KIREI/IOT/KelembapanTanah'){
         storeDataKelembapanTanah(payload)
     }
     else if(topic === 'intern-KIREI/IOT/WaterLevel'){

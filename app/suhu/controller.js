@@ -10,9 +10,22 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
       const suhu = await Suhu.find();
 
+      const suhuData = Suhu.map((suhuDataMap) => {
+        const suhuCalender = new Date(suhuDataMap.createdAt);
+//         tanggal = date.getDate();
+// bulan = date.getMonth();
+// tahun = date.getFullYear();
+        return {
+          celcius:suhuDataMap.celcius,
+          humidity:suhuDataMap.humidity,
+          date:suhuDataMap.getDate() + ':' + suhuDataMap.getMonth() + ':' + suhuDataMap.getFullYear(),
+        }
+      })
+
       res.render("admin/suhu/view_suhu", {
         alert,
         suhu,
+        suhuData,
         name: req.session.admin.name,
         title: "Halaman User",
       });
@@ -26,7 +39,18 @@ module.exports = {
   getSuhu: async (req, res, next) => {
     try {
       // const suhu = await Suhu.find();
+
+
+      // const suhu = await Suhu.find().map((data) => {
+      //   var date = new Date(data.createdAt);
+      //     return {
+
+      //     }
+      // });
+
       const suhu = await Suhu.find();
+
+      // const suhuData = [...suhu, {calender: "tes"}]
       
       //  AWAL TO AKHIR
       suhu.sort(function(a, b) {
@@ -48,7 +72,7 @@ module.exports = {
       //   return 0;
       // });
 
-      res.status(200).json({ data: suhu });
+      res.status(200).json({ data: suhu, harga:"sss" });
     } catch (err) {
       res.status(500).json({ message: err.message || `Internal Server Error` });
     }
