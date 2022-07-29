@@ -6,30 +6,44 @@
 ></script>
 <script>
   var xmlhttp = new XMLHttpRequest();
-  var url = "https://kirei-intern-mqtt.herokuapp.com/api/v1/suhu/get";
+  var url = "http://localhost:5000/api/v1/alldata";
   xmlhttp.open("GET", url, true);
   xmlhttp.send();
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var data = JSON.parse(this.responseText);
 
-      var celcius = data.data.slice(-5, data.length).map(function (elem) {
+      // SUHU
+      var celcius = data.data.map(function (elem) {
         return elem.celcius;
       });
 
-      var humidity = data.data.slice(-5, data.length).map(function (elem) {
+      var humidity = data.data.map(function (elem) {
         return elem.humidity;
       });
 
-      var timeCelcius = data.data.slice(-5, data.length).map(function (elem) {
-        let newDate = new Date(elem.updatedAt);
+      var timeCelcius = data.data.map(function (elem) {
+        let newDate = new Date(elem.createdAt);
         return `${newDate.getFullYear()}-${(newDate.getMonth() + 1).toString().padStart(2, "0")}-${newDate.getDate().toString().padStart(2, "0")}`;
       });
+
+      // TANAH
+      var waterLevel = data.data.map(function (elem) {  
+        return elem.waterlevel;
+      });
+
+      var timeWaterLevel = data.data.map(function (elem) {
+        let newDate = new Date(elem.createdAt);
+        return `${newDate.getFullYear()}-${(newDate.getMonth() + 1).toString().padStart(2, "0")}-${newDate.getDate().toString().padStart(2, "0")}`;
+      });
+
+      var timeAll = timeCelcius.concat(timeWaterLevel)
+
       const ctx = document.getElementById("canvas").getContext("2d");
       const myChart = new Chart(ctx, {
         type: "line",
         data: {
-          labels: timeCelcius,
+          labels: timeAll,
           datasets: [
             {
               label: "Celcius",
@@ -43,6 +57,13 @@
               data: humidity,
               backgroundColor: "transparent",
               borderColor: "green",
+              borderWidth: 4,
+            },
+            {
+              label: "Water Level",
+              data: waterLevel,
+              backgroundColor: "transparent",
+              borderColor: "yellow",
               borderWidth: 4,
             },
           ],

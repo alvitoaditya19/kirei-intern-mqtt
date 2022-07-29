@@ -9,18 +9,41 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
       const keruhAir = await Air.find();
 
-      keruhAir.sort(function(a, b) {
-        var keyA = new Date(a.updatedAt),
-          keyB = new Date(b.updatedAt);
-        // Compare the 2 dates
-        if (keyA < keyB) return -1;
-        if (keyA > keyB) return 1;
-        return 0;
-      });
+      // keruhAir.sort(function(a, b) {
+      //   var keyA = new Date(a.updatedAt),
+      //     keyB = new Date(b.updatedAt);
+      //   // Compare the 2 dates
+      //   if (keyA < keyB) return -1;
+      //   if (keyA > keyB) return 1;
+      //   return 0;
+      // });
+
+      const keruhAirData = keruhAir.map((keruhAirDataMap) => {
+        const keruhAirCalender = new Date(keruhAirDataMap.updatedAt)
+        return {
+          kekeruhanAir: keruhAirDataMap.kekeruhanAir,
+          phAir: keruhAirDataMap.phAir,
+          oksigen: keruhAirDataMap.oksigen,
+
+            date:
+                keruhAirCalender.getDate() +
+                " - " +
+                (keruhAirCalender.getMonth() + 1) +
+                " - " +
+                keruhAirCalender.getFullYear(),
+            time:
+                keruhAirCalender.getHours() +
+                ":" +
+                keruhAirCalender.getMinutes() +
+                ":" +
+                keruhAirCalender.getSeconds(),
+        }
+    })
 
       res.render("admin/keruhAir/view_keruhair", {
         alert,
         keruhAir,
+        keruhAirData,
         name: req.session.admin.name,
         title: "Halaman User",
       });

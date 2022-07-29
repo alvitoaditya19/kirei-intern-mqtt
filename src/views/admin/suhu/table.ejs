@@ -4,16 +4,19 @@
       <th>No.</th>
       <th>Suhu Celcius</th>
       <th>Kelembapan Udara</th>
-      <th>Time</th>
+      <th>Tanggal</th>
+      <th>Waktu</th>
     </tr>
   </thead>
   <tbody>
-    <% for(let i = 0; i < suhu.length; i++){ %>
+    <% for(let i = 0; i < suhuData.length; i++){ %>
       <tr>
         <td><%= i + 1 %></td>
-        <td><%= suhu[i].celcius %> °C</td>
-        <td><%= suhu[i].humidity %> RH</td>
-        <td><%= suhu[i].updatedAt %></td>
+        <td><%= suhuData[i].celcius %> °C</td>
+        <td><%= suhuData[i].humidity %> RH</td>
+        <td><%= suhuData[i].date %></td>
+        <td><%= suhuData[i].time %></td>
+
       </tr>
     <% } %>
   </tbody>

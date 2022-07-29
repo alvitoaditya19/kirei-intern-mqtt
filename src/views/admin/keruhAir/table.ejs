@@ -5,18 +5,20 @@
       <th>Kekeruhan Air</th>
       <th>pH Air</th>
       <th>Oksigen</th>
-
+      <th>Date</th>
       <th>Time</th>
     </tr>
   </thead>
   <tbody>
-    <% for(let i = 0; i < keruhAir.length; i++){ %>
+    <% for(let i = 0; i < keruhAirData.length; i++){ %>
       <tr>
         <td><%= i + 1 %></td>
-        <td><%= keruhAir[i].kekeruhanAir %></td>
-        <td><%= keruhAir[i].phAir %></td>
-        <td><%= keruhAir[i].oksigen %></td>
-        <td><%= keruhAir[i].updatedAt %></td>
+        <td><%= keruhAirData[i].kekeruhanAir %></td>
+        <td><%= keruhAirData[i].phAir %></td>
+        <td><%= keruhAirData[i].oksigen %></td>
+        <td><%= keruhAirData[i].date %></td>
+        <td><%= keruhAirData[i].time %></td>
+
       </tr>
     <% } %>
   </tbody>

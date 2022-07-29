@@ -16,6 +16,8 @@ var cors = require('cors')
 const route = require("./routes")
 const authRouter = require("../app/auth/router");
 
+const alldataRouter = require("../app/alldata/router");
+
 const adminRouter = require("../app/admin/router");
 const dashboardRouter = require("../app/dashboard/router");
 const lampuRouter = require("../app/lampu/router");
@@ -26,7 +28,6 @@ const waterRouter = require("../app/water/router");
 const keruhRouter = require("../app/air/router");
 const onOfControlRouter = require("../app/onOfManual/router");
 const tanahRouter = require("../app/tanah/router");
-
 const pumpRouter = require("../app/pump/router");
 
 const app = express();
@@ -78,6 +79,10 @@ app.use("/keruhair", keruhRouter);
 // API
 // API
 // app.use(`${URL}/players`, playerRouter);
+
+
+app.use(`${URL}/alldata`, alldataRouter);
+
 app.use(`${URL}/auth`, authRouter);
 app.use(`${URL}/user`, userRouter);
 
@@ -111,8 +116,6 @@ app.use(function (err, req, res) {
   res.render("error");
 });
 
-// app.listen(port, () => {
-// 	console.log(`App run on :${port}`)
-// })
+
 
 module.exports = app;

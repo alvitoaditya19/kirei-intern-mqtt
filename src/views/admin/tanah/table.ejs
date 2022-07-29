@@ -5,17 +5,21 @@
       <th>Kelembapan Tanah</th>
       <th>Nitrat Tanah</th>
       <th>Kadar Tanah</th>
+      <th>Date</th>
       <th>Time</th>
+
     </tr>
   </thead>
   <tbody>
-    <% for(let i = 0; i < tanah.length; i++){ %>
+    <% for(let i = 0; i < tanahData.length; i++){ %>
       <tr>
         <td><%= i + 1 %></td>
-        <td><%= tanah[i].kelembapanTanah %> RH</td>
-        <td><%= tanah[i].nitratTanah %></td>
-        <td><%= tanah[i].kadarTanah %></td>
-        <td><%= tanah[i].updatedAt %></td>
+        <td><%= tanahData[i].kelembapanTanah %> RH</td>
+        <td><%= tanahData[i].nitratTanah %></td>
+        <td><%= tanahData[i].kadarTanah %></td>
+        <td><%= tanahData[i].date %></td>
+        <td><%= tanahData[i].time %></td>
+
       </tr>
     <% } %>
   </tbody>

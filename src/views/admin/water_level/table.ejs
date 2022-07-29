@@ -3,15 +3,19 @@
     <tr>
       <th>No.</th>
       <th>Water Level</th>
+      <th>Date</th>
       <th>Time</th>
+
     </tr>
   </thead>
   <tbody>
-    <% for(let i = 0; i < waterLevel.length; i++){ %>
+    <% for(let i = 0; i < waterLevelData.length; i++){ %>
       <tr>
         <td><%= i + 1 %></td>
-        <td><%= waterLevel[i].waterlevel %> cm</td>
-        <td><%= waterLevel[i].updatedAt %></td>
+        <td><%= waterLevelData[i].waterlevel %> cm</td>
+        <td><%= waterLevelData[i].date %></td>
+        <td><%= waterLevelData[i].time %></td>
+
       </tr>
     <% } %>
   </tbody>

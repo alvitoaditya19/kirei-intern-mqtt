@@ -104,7 +104,7 @@
                     width="50"
                   />
                   <div class="font-weight-medium color-pallete1 ml-2">
-                    Jumlah <br />Sayur
+                    Jumlah Sayur<br /><%= vegetable1.name %>
                   </div>
                 </div>
 
@@ -114,7 +114,7 @@
                       Total
                     </div>
                     <div class="h5 mb-0 font-weight-medium color-pallete1">
-                      <%= vegetable1.sum + vegetable2.sum %>
+                      <%= vegetable1.sum  %>
                     </div>
                   </div>
                 </div>
@@ -122,27 +122,27 @@
             </div>
           </div>
           <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning border py-2">
+            <div class="card border-left-success border py-2">
               <div class="card-body">
                 <div class="row align-items-center">
                   <div class="ml-2"></div>
                   <img
-                    src="/images/icon-weather.png"
+                    src="/images/icon-vegetable.png"
                     alt=""
                     height="50"
                     width="50"
                   />
                   <div class="font-weight-medium color-pallete1 ml-2">
-                    Keadaan <br />Cuaca
+                    Jumlah Sayur<br /><%= vegetable2.name %>
                   </div>
                 </div>
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="text-xs text-gray-500 text-uppercase my-2">
-                      Keadaan
+                      Jumlah
                     </div>
                     <div class="h5 mb-0 font-weight-medium color-pallete1">
-                      Cerah
+                      <%= vegetable2.sum %>
                     </div>
                   </div>
                 </div>

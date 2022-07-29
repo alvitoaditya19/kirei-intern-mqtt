@@ -10,9 +10,29 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
       const waterLevel = await WaterLevel.find();
 
+      const waterLevelData = waterLevel.map((waterLevelDataMap) => {
+        const waterLevelCalender = new Date(waterLevelDataMap.updatedAt)
+        return {
+          waterlevel: waterLevelDataMap.waterlevel,
+            date:
+                waterLevelCalender.getDate() +
+                " - " +
+                (waterLevelCalender.getMonth() + 1) +
+                " - " +
+                waterLevelCalender.getFullYear(),
+            time:
+                waterLevelCalender.getHours() +
+                ":" +
+                waterLevelCalender.getMinutes() +
+                ":" +
+                waterLevelCalender.getSeconds(),
+        }
+    })
+
       res.render("admin/water_level/view_water_level", {
         alert,
         waterLevel,
+        waterLevelData,
         name: req.session.admin.name,
         title: "Halaman Water Level",
       });

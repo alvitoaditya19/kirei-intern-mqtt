@@ -10,9 +10,32 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
       const tanah = await Tanah.find();
 
+      const tanahData = tanah.map((tanahDataMap) => {
+        const tanahCalender = new Date(tanahDataMap.updatedAt)
+        return {
+          kelembapanTanah: tanahDataMap.kelembapanTanah,
+          kadarTanah: tanahDataMap.kadarTanah,
+          nitratTanah: tanahDataMap.nitratTanah,
+
+            date:
+                tanahCalender.getDate() +
+                " - " +
+                (tanahCalender.getMonth() + 1) +
+                " - " +
+                tanahCalender.getFullYear(),
+            time:
+                tanahCalender.getHours() +
+                ":" +
+                tanahCalender.getMinutes() +
+                ":" +
+                tanahCalender.getSeconds(),
+        }
+    })
+
       res.render("admin/tanah/view_tanah", {
         alert,
         tanah,
+        tanahData,
         name: req.session.admin.name,
         title: "Halaman User",
       });
