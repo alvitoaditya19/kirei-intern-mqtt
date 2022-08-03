@@ -1,4 +1,6 @@
 const Air = require("../../src/db/Models/Air");
+const { Parser } = require("json2csv")
+
 
 module.exports = {
   index: async (req, res) => {
@@ -120,4 +122,26 @@ module.exports = {
       res.status(500).json({ message: err.message || `Internal Server Error` });
     }
   },
+  actionConvertCSV: async (req, res) => {
+    const air = await Air.find().select(
+        "kekeruhanAir phAir oksigen createdAt updatedAt"
+    )
+
+    const fields = [
+        "kekeruhanAir",
+        "phAir",
+        "oksigen",
+        "createdAt",
+        "updatedAt",
+    ]
+
+    const json2csvParser = new Parser({ fields })
+    const csv = json2csvParser.parse(air)
+
+    console.log(csv)
+
+    res.header("Content-Type", "text/csv")
+    res.attachment("data-airr.csv")
+    return res.send(csv)
+},
 };
