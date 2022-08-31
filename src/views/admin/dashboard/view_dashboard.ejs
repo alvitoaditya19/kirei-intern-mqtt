@@ -468,7 +468,7 @@
                     class="mb-2"
                   />
 
-                  <h1 class="title">Pompa 1 OFF</h1>
+                  <h1 class="title">Pump 1 OFF</h1>
                 </button>
 
                 <% } else if(pump.pump1 === 'ON') { %>
@@ -481,13 +481,13 @@
                     width="60"
                     class="mb-2"
                   />
-                  <h1 class="title">Pompa 1 ON</h1>
+                  <h1 class="title">Pump 1 ON</h1>
                 </button>
                 <% } %>
-              </form> -->
+              </form> 
 
 
-              <!-- <form
+              <form
                 action="/dashboard/pump2/62430c4028e1eef562010284?_method=PUT"
                 style="display: col-lg-6 col-12"
                 method="POST"
@@ -502,7 +502,7 @@
                     width="60"
                     class="mb-2"
                   />
-                  <h1 class="title">Pompa 2 OFF</h1>
+                  <h1 class="title">Pump 2 OFF</h1>
                 </button>
 
                 <% } else if(pump.pump2 === 'ON') { %>
@@ -515,24 +515,23 @@
                     width="60"
                     class="mb-2"
                   />
-                  <h1 class="title">Pompa 2 ON</h1>
+                  <h1 class="title">Pump 2 ON</h1>
                 </button>
 
                 <% } %>
               </form>
               <!-- AJAX -->
-              <!-- action="/dashboard/pump1/62430c4028e1eef562010284?_method=PUT" -->
-            </div>
             <!-- AKHIR FORM REQUEST -->
+            </div>
             <div class="mt-lg-3 mt-2">
-              <!-- <h1 class="title-monitoring">Fitur Kontrol (Tidak Delay)</h1> -->
-              <h1 class="title-monitoring">Fitur Kontrol (Ajax)</h1>
+              <h1 class="title-monitoring">Fitur Kontrol (Tidak Delay)</h1>
+              <!-- <h1 class="title-monitoring">Fitur Kontrol (Ajax)</h1> -->
 
             </div>
 
             <!-- AJAX -->
             <div class="mt-lg-3 mt-2">
-              <div class="row">
+            
               <% if(onOfManual.statusKontrol === 'ON') { %>
                 <button class="btn-status-otomatis-off btn" id="buttononoff-off">
                   <img
@@ -558,8 +557,8 @@
                   <h1 class="title" id="titlestatus">OTOMATIS ON</h1>
                 </button>
               <% } %>
-              </div>
             </div>
+           
             <div class="row mt-lg-3 mt-2">
 
               <% if(lampu.lampu1 === 'OFF') { %>
