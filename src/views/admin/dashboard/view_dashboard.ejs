@@ -346,9 +346,9 @@
             </div>
           </div>
           <div class="col-lg-6">
-            <!-- <h1 class="title-monitoring">Fitur Kontrol</h1> -->
+            <h1 class="title-monitoring">Fitur Kontrol</h1>
             <!-- FORM REQUEST -->
-            <!-- <div class="row mb-lg-3 mb-4">
+            <div class="row mb-lg-3 mb-4">
               <form
                 action="/dashboard/onOfManual/62452a1b53bd72eb5a176274?_method=PUT"
                 style="display: inline-block"
@@ -383,9 +383,9 @@
 
                 <% } %>
               </form>
-            </div> -->
+            </div>
             <div class="row">
-              <!-- <form
+              <form
                 action="/dashboard/lampu1/62414bbd1a431cac0b339833?_method=PUT"
                 style="display: col-lg-6 col-12"
                 method="POST"
@@ -519,14 +519,14 @@
                 </button>
 
                 <% } %>
-              </form> -->
+              </form>
               <!-- AJAX -->
               <!-- action="/dashboard/pump1/62430c4028e1eef562010284?_method=PUT" -->
             </div>
             <!-- AKHIR FORM REQUEST -->
             <div class="mt-lg-3 mt-2">
               <!-- <h1 class="title-monitoring">Fitur Kontrol (Tidak Delay)</h1> -->
-              <h1 class="title-monitoring">Fitur Kontrol</h1>
+              <h1 class="title-monitoring">Fitur Kontrol (Ajax)</h1>
 
             </div>
 
@@ -563,7 +563,7 @@
             <div class="row mt-lg-3 mt-2">
 
               <% if(lampu.lampu1 === 'OFF') { %>
-                <button class="btn-lampu1-off btn" id="buttonlampu1off">
+                <button class="btn-lampu1-off btn" id="buttonlampu1off" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %> >
                   <img
                     src="/images/icon-lamp2.svg"
                     alt=""
