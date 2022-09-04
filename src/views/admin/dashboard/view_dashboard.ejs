@@ -354,9 +354,9 @@
                 style="display: inline-block"
                 method="POST"
               >
-                <% if(onOfManual.statusKontrol === 'ON') { %>
+                <% if(onOfManual.statusKontrol === 'OFF') { %>
 
-                <button class="btn-lamp-off btn">
+                <button class="btn-lamp-off btn" >
                   <img
                     src="/images/icon-lamp2.svg"
                     alt=""
@@ -368,7 +368,7 @@
                   <h1 class="title">OTOMATIS OFF</h1>
                 </button>
 
-                <% } else if(onOfManual.statusKontrol === 'OFF') { %>
+                <% } else if(onOfManual.statusKontrol === 'ON') { %>
 
                 <button class="btn-lamp-on btn">
                   <img
@@ -393,7 +393,7 @@
               >
                 <% if(lampu.lampu1 === 'OFF') { %>
                 <div class="">
-                  <button class="btn-lamp-off btn">
+                  <button class="btn-lamp-off btn" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %>>
                     <img
                       src="/images/icon-lamp2.svg"
                       alt=""
@@ -406,7 +406,7 @@
                 </div>
                 <% } else if(lampu.lampu1 === 'ON') { %>
                 <div class="">
-                  <button class="btn-lamp-on btn">
+                  <button class="btn-lamp-on btn" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %>>
                     <img
                       src="/images/icon-lamp1.svg"
                       alt=""
@@ -427,7 +427,7 @@
               >
                 <% if(lampu.lampu2 === 'OFF') { %>
                 <div class="">
-                  <button class="btn-lamp-off btn">
+                  <button class="btn-lamp-off btn" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %>>
                     <img
                       src="/images/icon-lamp2.svg"
                       alt=""
@@ -440,7 +440,7 @@
                 </div>
                 <% } else if(lampu.lampu2 === 'ON') { %>
                 <div class="">
-                  <button class="btn-lamp-on btn">
+                  <button class="btn-lamp-on btn" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %>>
                     <img
                       src="/images/icon-lamp1.svg"
                       alt=""
@@ -459,7 +459,7 @@
                 method="POST"
               >
                 <% if(pump.pump1 === 'OFF') { %>
-                <button class="btn-lamp-off btn">
+                <button class="btn-lamp-off btn" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %>>
                   <img
                     src="/images/icon-lamp2.svg"
                     alt=""
@@ -473,7 +473,7 @@
 
                 <% } else if(pump.pump1 === 'ON') { %>
 
-                <button class="btn-lamp-on btn">
+                <button class="btn-lamp-on btn" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %>>
                   <img
                     src="/images/icon-lamp1.svg"
                     alt=""
@@ -494,7 +494,7 @@
               >
                 <% if(pump.pump2 === 'OFF') { %>
 
-                <button class="btn-lamp-off btn">
+                <button class="btn-lamp-off btn" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %>>
                   <img
                     src="/images/icon-lamp2.svg"
                     alt=""
@@ -507,7 +507,7 @@
 
                 <% } else if(pump.pump2 === 'ON') { %>
 
-                <button class="btn-lamp-on btn">
+                <button class="btn-lamp-on btn" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %>>
                   <img
                     src="/images/icon-lamp1.svg"
                     alt=""
@@ -523,16 +523,16 @@
               <!-- AJAX -->
             <!-- AKHIR FORM REQUEST -->
             </div>
-            <div class="mt-lg-3 mt-2">
-              <h1 class="title-monitoring">Fitur Kontrol (Tidak Delay)</h1>
+            <!-- <div class="mt-lg-3 mt-2">
+              <h1 class="title-monitoring">Fitur Kontrol (Tidak Delay)</h1> -->
               <!-- <h1 class="title-monitoring">Fitur Kontrol (Ajax)</h1> -->
 
-            </div>
+            <!-- </div> -->
 
             <!-- AJAX -->
-            <div class="mt-lg-3 mt-2">
+            <!-- <div class="mt-lg-3 mt-2">
             
-              <% if(onOfManual.statusKontrol === 'ON') { %>
+              <% if(onOfManual.statusKontrol === 'OFF') { %>
                 <button class="btn-status-otomatis-off btn" id="buttononoff-off">
                   <img
                   src="/images/icon-lamp2.svg"
@@ -544,7 +544,7 @@
                 />
                   <h1 class="title" id="titlestatus">OTOMATIS OFF</h1>
                 </button>
-              <% } else if(onOfManual.statusKontrol === 'OFF') { %>
+              <% } else if(onOfManual.statusKontrol === 'ON') { %>
                 <button class="btn-status-otomatis-on btn" id="buttononoff-on">
                   <img
                     src="/images/icon-lamp1.svg"
@@ -557,10 +557,9 @@
                   <h1 class="title" id="titlestatus">OTOMATIS ON</h1>
                 </button>
               <% } %>
-            </div>
+            </div> -->
            
-            <div class="row mt-lg-3 mt-2">
-
+            <!-- <div class="row mt-lg-3 mt-2">
               <% if(lampu.lampu1 === 'OFF') { %>
                 <button class="btn-lampu1-off btn" id="buttonlampu1off" <% if(onOfManual.statusKontrol === 'ON') { %> disabled <% } %> >
                   <img
@@ -598,7 +597,7 @@
                     id="imgLampu2"
                   />
                   <h1 class="title" id="titleLampu2">Lampu 2 OFF</h1> 
-                  <!-- Lampu 2 OFF -->
+                
                 </button>
               <% } else if(lampu.lampu2 === 'ON') { %>
                 <button class="btn-lamp-on btn lampu2" id="buttonlampu2on">
@@ -611,11 +610,11 @@
                     id="imgLampu2on"
                   />
                   <h1 class="title" id="titleLampu2on">Lampu 1 ON</h1> 
-                  <!-- Lampu 2 OFF -->
+                  
                 </button>
               <% } %>
 
-              <!-- PUMP -->
+              
               <% if(pump.pump1 === 'OFF') { %>
                 <button class="btn-pump1-off btn" id="buttonpump1off">
                   <img
@@ -653,7 +652,7 @@
                   id="imgPump2"
                 />
                 <h1 class="title" id="titlePump2">Pump 2 OFF</h1> 
-                <!-- Lampu 2 OFF -->
+               
               </button>
               <% } else if(pump.pump1 === 'ON') { %>
                 <button class="btn-lamp-off-pump2 btn" id="buttonpump2">
@@ -666,11 +665,11 @@
                     id="imgPump2"
                   />
                   <h1 class="title" id="titlePump2">Pump 2 OFF</h1> 
-                  <!-- Lampu 2 OFF -->
+                
                 </button>
               <% } %>
 
-            </div>
+            </div> -->
 
             <!-- AKHIR AJAX -->
           </div>
