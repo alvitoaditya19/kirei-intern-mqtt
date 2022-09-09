@@ -30,7 +30,7 @@ module.exports = {
       const {id} = req.params;
       const { name, sum } = req.body;
 
-      await User.findOneAndUpdate(
+      await Vegetable.findOneAndUpdate(
         {
           _id: id,
         },
