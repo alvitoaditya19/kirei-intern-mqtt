@@ -12,6 +12,7 @@ module.exports = {
 
       const alert = { message: alertMessage, status: alertStatus };
       const user = await User.find();
+
       res.render("admin/user/view_user", {
         alert,
         user,

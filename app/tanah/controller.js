@@ -10,6 +10,15 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
       const tanah = await Tanah.find();
 
+      tanah.sort(function (a, b) {
+        var keyA = new Date(a.updatedAt),
+            keyB = new Date(b.updatedAt)
+        // Compare the 2 dates
+        if (keyA < keyB) return 1
+        if (keyA > keyB) return -1
+        return 0
+    })
+
       const tanahData = tanah.map((tanahDataMap) => {
         const tanahCalender = new Date(tanahDataMap.updatedAt)
         return {

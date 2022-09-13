@@ -23,6 +23,15 @@ module.exports = {
       const vegetable1 = await Vegetable.findById("62772ed88e95ab077ed764a3");
       const vegetable2 = await Vegetable.findById("62787d4f9f1c9d93d46815cd");
       const user = await User.countDocuments();
+
+      // suhu.sort(function(a, b) {
+      //   var keyA = new Date(a.updatedAt),
+      //     keyB = new Date(b.updatedAt);
+      //   // Compare the 2 dates
+      //   if (keyA < keyB) return 1;
+      //   if (keyA > keyB) return -1;
+      //   return 0;
+      // });
       
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
